@@ -1,2 +1,2 @@
 ### Leaders
-* [James Mesta](mailto:jimmy.mesta@gmail.com)
+* [Jimmy Mesta](mailto:jimmy@ksoc.com)
