@@ -1,3 +1,12 @@
+---
+layout: col-sidebar
+title: OWASP Kubernetes Top 10
+tags: kubernetes
+level: 2
+type: documentation
+pitch: none yet
+---
+
 ### Project Information
 
 {:refdef: style="width: 50px; height: 50px"}
