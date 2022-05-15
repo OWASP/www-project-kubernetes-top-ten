@@ -1,7 +1,9 @@
 ## Overview
+
 A Kubernetes environment has the ability to generate logs at a variety of levels from many different components. When logs are not captured, stored, or actively monitored attackers have the ability to exploit vulnerabilities while going largely undetected. The lack of logging and monitoring also presents challenges during incident investigation and response efforts. 
 
 ## Description
+
 Inadequate logging in the context of Kubernetes occurs any time:
 
 - Relevant events such as failed authentication attempts, access to sensitive resources, manual deletion or modification of Kubernetes resources are not logged.
@@ -9,7 +11,9 @@ Inadequate logging in the context of Kubernetes occurs any time:
 - Alerting thresholds are not in place or escalated appropriately.
 - Logs are not centrally stored and protected against tampering.
 - Logging infrastructure is disabled completely.
+
 ## How to Prevent
+
 The following logging sources should be enabled and configured appropriately:
 
 **Kubernetes Audit Logs: [Audit logging](https://kubernetes.io/docs/tasks/debug-application-cluster/audit/)** is a Kubernetes feature that records actions taken by the API for later analysis. Audit logs help answer questions pertaining to events occurring on the API server itself.
@@ -29,11 +33,15 @@ Managed Kubernetes providers, including AWS, Azure, and GCP provide optional acc
 **Network Logs:** Network logs can be captured within Kubernetes at a number of layers. If you are working with traditional proxy or ingress components such as nginx or apache, you should use the standard out `stdout` and standard error `stderr` pattern to capture and ship these logs for further investigation. Other projects such as [eBPF](https://ebpf.io/) aim to provide consumable network and kernel logs to greater enhance security observability within the cluster. 
 
 As outlined above, there is no shortage of logging mechanisms available within the Kubernetes ecosystem. A robust security logging architecture should not only capture relevant security events, but also be centralized in a way that is queryable, long term, and maintains integrity.
+
 ## Example Attack Scenarios
+
 Scenario #1: Rouge Insider (anomalous number of “delete” events)
 
 Scenario #2: Service Account Token Compromise
+
 ## References
+
 [https://developer.squareup.com/blog/threat-hunting-with-kubernetes-audit-logs/](https://developer.squareup.com/blog/threat-hunting-with-kubernetes-audit-logs/)
 
 [https://kubernetes.io/docs/concepts/cluster-administration/logging/](https://kubernetes.io/docs/concepts/cluster-administration/logging/)
