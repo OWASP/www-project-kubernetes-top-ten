@@ -10,7 +10,7 @@ pitch: A very brief, one-line description of your project
 ---
 
 ## About the Kubernetes Top 10
-When adopting [Kubernetes](https://kubernetes.io), we introduce new risks to our applications and infrastructure. The The *OWASP Kubernetes Top 10* is aimed at helping security practitioners, system admistrators, and software developers prioroitze risks around the Kubernetes ecosystem. The Top Ten is a prioritized list of these risks backed by data collected from organizations varying in maturity and complexity. 
+When adopting [Kubernetes](https://kubernetes.io), we introduce new risks to our applications and infrastructure. The The *OWASP Kubernetes Top 10* is aimed at helping security practitioners, system administrators, and software developers prioritize risks around the Kubernetes ecosystem. The Top Ten is a prioritized list of these risks backed by data collected from organizations varying in maturity and complexity. 
 
 ## Getting Involved
 Development, issues, and discussion all take place on the OWASP Top Ten [Github](https://github.com/OWASP/www-project-kubernetes-top-ten) repository. Join the conversation! 
