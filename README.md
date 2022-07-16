@@ -22,7 +22,7 @@ When adopting [Kubernetes](https://kubernetes.io), we introduce new risks to our
 * [Other Risks to Consider](2022/en/other-risks.md)
 
 
-## Get Involed!
+## Get Involved!
 
 Development of this document take place within the source repository on [Github](https://github.com/OWASP/www-project-kubernetes-top-ten).
 
