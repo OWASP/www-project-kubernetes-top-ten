@@ -8,7 +8,7 @@ Kubernetes manifests contain many different configurations that can effect the r
 
 **Application processes should not run as root:** Running the process inside of a container as the `root` user is a common misconfiguration in many clusters. While `root` may be an absolute requirement for some workloads, it should be avoided when possible. If the container were to be compromised, the attacker would have root-level privileges that allow actions such as starting a malicious process that otherwise wouldn’t be permitted with other users on the system. 
 
-```jsx
+```
 apiVersion: v1  
 kind: Pod  
 metadata:  
@@ -26,7 +26,7 @@ spec:
 
 **Read-only filesystems should be used:** In order to limit the impact of a compromised container on a Kubernetes node, it is recommended to utilize read-only filesystems when possible. This prevents a malicious process or application from writing back to the host system. Read-only filesystems are a key component to preventing container breakout.
 
-```jsx
+```
 apiVersion: v1  
 kind: Pod  
 metadata:  
@@ -42,7 +42,7 @@ spec:
 
 **Privileged containers should be disallowed**: Setting a container to `privileged` within Kubernetes, the container itself can access additional resources and kernel capabilities of the host itself. Privileged containers are dangerous as they remove many of the built-in container isolation mechanisms entirely. 
 
-```jsx
+```
 apiVersion: v1  
 kind: Pod  
 metadata:  
