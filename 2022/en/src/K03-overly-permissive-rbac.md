@@ -36,6 +36,7 @@ To reduce the risk of an attacker abusing RBAC configurations, it is important t
 - Audit RBAC included with installed third-party components
 - Deploy centralized polices to detect and block risky RBAC permissions
 - Utilize `RoleBindings` to limit scope of permissions to particular namespaces vs. cluster-wide RBAC policies
+- Follow the official [RBAC Good Practices](https://kubernetes.io/docs/concepts/security/rbac-good-practices/) in the Kubernetes docs 
 
 ## Example Attack Scenarios
 An OSS cluster observability tool is installed inside of a private Kubernetes cluster by the platform engineering team. This tool has an included web UI for debugging and analyzing traffic. The UI is accidentally exposed to the internet through it’s included Service manifest - it uses type: LoadBalancer which spins up an AWS ALB load balancer with a **public** IP address. 
@@ -64,4 +65,6 @@ An attacker finds the open web UI and is able to get a shell on the running cont
 
 Kubernetes RBAC: [https://kubernetes.io/docs/reference/access-authn-authz/rbac/](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 
-[https://github.com/PaloAltoNetworks/rbac-police](https://github.com/PaloAltoNetworks/rbac-police)
+RBAC Police Scanner: [https://github.com/PaloAltoNetworks/rbac-police](https://github.com/PaloAltoNetworks/rbac-police)
+
+Kubernetes RBAC Good Practices: [https://kubernetes.io/docs/concepts/security/rbac-good-practices/](https://kubernetes.io/docs/concepts/security/rbac-good-practices/)
