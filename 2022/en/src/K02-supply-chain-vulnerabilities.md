@@ -31,14 +31,19 @@ Containers take on many forms at different phases of the development lifecycle s
 
 ## Example Attack Scenarios
 
-Example #1: Malicious Container Image
+Example #1: Compromised CI/CD Pipeline
+
+Most teams use some form of automation to build and push container images to a central registry. The image is then pulled from Kubernetes as defined in the object manifest. If that build system were to be compromised and a malicious package was injected as part of the build Kubernetes would pull the image into the cluster and run it. Malware may be executed, cryptocurrency miners may be installed, or a backdoor planted. 
 
 ## References
+Admission Controllers: [https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/)
 
-[https://www.openpolicyagent.org/](https://www.openpolicyagent.org/)
-[https://kyverno.io/](https://kyverno.io/)
+Co-Sign: [https://github.com/sigstore/cosign](https://github.com/sigstore/cosign)
 
-[https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/)
-[https://owasp.org/www-project-cyclonedx/https://owasp.org/www-project-cyclonedx/](https://owasp.org/www-project-cyclonedx/https://owasp.org/www-project-cyclonedx/)
-[https://github.com/sigstore/cosign](https://github.com/sigstore/cosign)
-[https://github.com/docker-slim/docker-slim](https://github.com/docker-slim/docker-slim)
+CycloneDX: [https://owasp.org/www-project-cyclonedx/https://owasp.org/www-project-cyclonedx/](https://owasp.org/www-project-cyclonedx/https://owasp.org/www-project-cyclonedx/)
+
+Docker Slim: [https://github.com/docker-slim/docker-slim](https://github.com/docker-slim/docker-slim)
+
+Open Policy Agent: [https://www.openpolicyagent.org/](https://www.openpolicyagent.org/)
+
+

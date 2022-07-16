@@ -61,29 +61,12 @@ spec:
 
 Maintaining secure configurations throughout a large, distributed Kubernetes environment can be a difficult task. While many security configurations are often set in the `securityContext` of the manifest itself there are a number of other misconfigurations that can be detected elsewhere. In order to prevent misconfigurations, they must first be detected in both runtime and in code. 
 
-*Detect*
+Tools such as Open Policy Agent can be used as a policy engine to detect these common misconfigurations. The CIS Benchmark for Kubernetes can also be used as a starting point for discovering misconfigurations. 
 
-Tools such as Open Policy Agent can be used as a policy engine to find these common misconfigurations. The CIS Benchmark for Kubernetes can also be used as a starting point for discovering misconfigurations. 
-
-*Prevent*
-
-Detecting misconfigured workloads is not enough. Teams need the assurance that misconfigured Kubernetes objects can be blocked upon admission. This is typically handled by an [Admission Controller](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) on the Kubernetes API itself. Built-in functionality exists as part of the Kubernetes API itself called Pod Security Standards to enforce policy as part of the [Pod Security Admission Controller](https://kubernetes.io/docs/concepts/security/pod-security-admission/) in the cluster itself. It offers three modes - Privileged, Baseline, and Restricted. Other OSS projects such as Open Policy Agent Gatekeeper, Kyverno, and Kubewarden all offer policy enforcement capabilities as well to prevent misconfigured pods from being scheduled on a cluster. 
 
 ### Example Attack Scenarios
 
-Example #1: Container Breakout 1-Liner
 
-The following command if run against the Kubernetes API will create a very special pod that is running a highly privileged container. First we see `"hostPID": true`, which breaks down the most fundamental isolation of containers, letting us see all processes as if we were on the host. The `nsenter` command switches to a different `mount` namespace where `pid 1` is running which is the host `mount` namespace. Finally, we ensure the workload is `priviliged` allowing us to prevent permissions errors. Boom. Container breakout in a [tweet](https://twitter.com/mauilion/status/1129468485480751104https://twitter.com/mauilion/status/1129468485480751104)! 
-
-```
- kubectl run r00t --restart=Never -ti --rm --image lol \
-	 --overrides '{"spec":{"hostPID": true, 
-	 "containers":[{"name":"1","image":"alpine", 
-	 "command":["nsenter","--mount=/proc/1/ns/mnt","--","/bin/bash"], 
-     "stdin": true,"tty":true,"imagePullPolicy":"IfNotPresent", 
-     "securityContext":{"privileged":true}}]}}' \
-/
-```
 
 ### References
 
