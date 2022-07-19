@@ -10,8 +10,7 @@ When a subject such as a Service Account, User, or Group has access to the built
 
 Below you will find the RBAC configuration of a popular OSS Kubernetes development platform. It showcases a very dangerous `ClusterRoleBinding` which is bound to the `default` service account. Why is this dangerous? It grants the all-powerful `cluster-admin` privilege to every single Pod in the `default` namespace. If a pod in the default namespace is compromised (think, Remote Code Execution) then it is trivial for the attacker to compromise the entire cluster by impersonating the service 
 
-```jsx
-
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
@@ -43,7 +42,7 @@ An OSS cluster observability tool is installed inside of a private Kubernetes cl
 
 This hypothetical tool uses the following RBAC configuration:
 
-```jsx
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
