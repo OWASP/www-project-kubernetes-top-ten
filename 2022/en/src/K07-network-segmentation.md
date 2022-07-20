@@ -11,7 +11,7 @@ Workloads in a cluster eventually need to communicate to one another as well as 
 
 ***Native Controls (Multi-Cluster)***: One way to truly enforce network isolation within Kubernetes is to utilize separate clusters when appropriate. This adds complexity when working with tightly coupled microservices but is a viable option when separating different tenants based on risk. 
 
-***Native Controls (NetworkPolicies):*** Network policies are built into Kubernetes itself and behave like firewall rules. They control how pods communicate. Without network policies, any pod can talk to any other pod. Network Policies should be defined such to limit pod communication to only defined assets while denying everything that isn’t explicitly configured. Below is an example of a  network policy prevents backend egress between pods running the “default” namespace:
+***Native Controls (NetworkPolicies):*** Network policies are built into Kubernetes itself and behave like firewall rules. They control how pods communicate. Without network policies, any pod can talk to any other pod. Network Policies should be defined as to limit pod communication to only defined assets while denying everything that isn’t explicitly configured. Below is an example of a  network policy prevents backend egress between pods running the “default” namespace:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
