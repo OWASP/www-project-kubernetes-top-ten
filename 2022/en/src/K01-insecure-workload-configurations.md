@@ -35,7 +35,7 @@ spec:
   containers:  
 
   securityContext:  
-	#read-only fs explicitally defined
+	#read-only fs explicitly defined
     readOnlyRootFilesystem: true
 ```
 
@@ -46,15 +46,15 @@ spec:
 apiVersion: v1  
 kind: Pod  
 metadata:  
-  name: priviliged-pod
+  name: privileged-pod
 spec:  
   containers:  
 	...
   securityContext:  
     #priviliged 
     privileged: true
-	#non-priviliged 
-	priviliged: false
+	#non-privileged 
+	privileged: false
 ```
 
 ### How to Prevent
