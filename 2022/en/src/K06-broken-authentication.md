@@ -26,7 +26,7 @@ Service account (SA) tokens can be presented to the Kubernetes API as an authent
 
 **Enforce MFA when possible:** No matter the auth mechanism chosen, force humans to provide a second method of authentication (typically part of OIDC).
 
-***Don’t use Service Account tokens from outside of the cluster:*** SAs can’t be bound to groups and the never expire. Using the long-lived SA from outside of the cluster opens your cluster up to significant risk. 
+***Don’t use Service Account tokens from outside of the cluster:*** SAs can’t be bound to groups and they never expire. Using the long-lived SA from outside of the cluster opens your cluster up to significant risk. 
 
 ***Authenticate users and external services using short-lived tokens:*** All authentication tokens should be as short-lived as tolerable. This way if (and when) a credential is leaked, it is possible that it may not be replayed in the time necessary to compromise the account. 
 
