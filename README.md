@@ -34,4 +34,4 @@ Development of this document take place within the source repository on [Github]
   - [OWASP Docker Security Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html)
 
 
-[Slack](https://owasp.slack.com): [#project-k8s-top10](https://owasp.slack.com/messages/project-k8s-top10) channel
+[Slack](https://owasp.slack.com): [#project-k8s-top10](https://owasp.slack.com/messages/project-k8s-top10) channel (Coming Soon!)
