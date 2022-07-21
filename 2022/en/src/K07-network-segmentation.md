@@ -35,7 +35,7 @@ spec:
 
 ***Service Mesh:*** There are a number of different service mesh projects available for different use cases including [Istio](https://istio.io/), [Linkerd](https://linkerd.io/), and [Hashicorp Consul](https://www.consul.io/docs/k8s). Each of these service mesh technologies offer different ways to segment network traffic within a Kubernetes cluster and all come with pros and cons. Below is an example of an Istio `AuthorizationPolicy`:
 
-```
+```yaml
 apiVersion: "security.istio.io/v1beta1"
 kind: "AuthorizationPolicy"
 metadata:
