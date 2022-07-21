@@ -9,7 +9,7 @@ Misconfigurations in core Kubernetes components can lead to complete cluster com
 
 Anonymous authentication allows non-authenticated requests to the Kubelet. Check your Kubelet configuration and ensure the flag below is set to **false**:
 
-```jsx
+```bash
 #bad
 --anonymous-auth=true
 #good
@@ -18,7 +18,7 @@ Anonymous authentication allows non-authenticated requests to the Kubelet. Check
 
 Authorization checks should always be performed when communicating with the Kubelets. It is possible to set the Authorization mode to explicitally allow unauthorized requests. Inspect the following to ensure this is not the case in your Kubelet config. The mode should be set to anything other than **AlwaysAllow**:
 
-```jsx
+```bash
 #bad
 --authorization-mode=AlwaysAllow
 #good
