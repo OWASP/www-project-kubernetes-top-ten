@@ -19,7 +19,7 @@ When adopting [Kubernetes](https://kubernetes.io), we introduce new risks to our
 * K08:2022 [Secrets Management Failures](2022/en/src/K08-secrets-management.md)
 * K09:2022 [Misconfigured Cluster Components](2022/en/src/K09-misconfigured-cluster-components.md)
 * K10:2022 [Outdated and Vulnerable Kubernetes Components](2022/en/src/K10-vulnerable-components.md)
-* [Other Risks to Consider](2022/en/other-risks.md)
+* [Other Risks to Consider](2022/en/src/other-risks.md)
 
 
 ## Get Involved!
