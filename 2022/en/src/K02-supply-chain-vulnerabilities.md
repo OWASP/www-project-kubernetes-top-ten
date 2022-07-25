@@ -40,7 +40,7 @@ Admission Controllers: [https://kubernetes.io/docs/reference/access-authn-authz/
 
 Co-Sign: [https://github.com/sigstore/cosign](https://github.com/sigstore/cosign)
 
-CycloneDX: [https://owasp.org/www-project-cyclonedx/https://owasp.org/www-project-cyclonedx/](https://owasp.org/www-project-cyclonedx/https://owasp.org/www-project-cyclonedx/)
+CycloneDX: [https://owasp.org/www-project-cyclonedx/](https://owasp.org/www-project-cyclonedx/)
 
 Docker Slim: [https://github.com/docker-slim/docker-slim](https://github.com/docker-slim/docker-slim)
 
