@@ -5,7 +5,7 @@ title: OWASP Kubernetes Top Ten
 tags: kubernetes
 level: 2
 type: 
-pitch: A very brief, one-line description of your project
+pitch: Welcome to the OWASP Top Ten for Kubernetes
 
 ---
 
