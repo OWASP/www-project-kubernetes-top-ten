@@ -27,7 +27,7 @@ roleRef:
 
 ## How to Prevent
 
-To reduce the risk of an attacker abusing RBAC configurations, it is important to analyze your configurations continuously and ensure the principle of lease privilege is always enforced. Some recommendations are below:
+To reduce the risk of an attacker abusing RBAC configurations, it is important to analyze your configurations continuously and ensure the principle of least privilege is always enforced. Some recommendations are below:
 
 - Reduce direct cluster access by end users when possible
 - Don’t use Service Account Tokens outside of the cluster
