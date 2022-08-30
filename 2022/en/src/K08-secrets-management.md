@@ -1,5 +1,5 @@
 ## Overview
-In Kubernetes, a Secret is a small object that contains sensitive data, like a password or token. It is necessary to access how sensitive data such as credentials and keys are stored and accessed. Secrets are a useful features in the Kubernetes ecosystem but need to be handled with extreme caution.
+In Kubernetes, a Secret is a small object that contains sensitive data, like a password or token. It is necessary to assess how sensitive data such as credentials and keys are stored and accessed. Secrets are a useful features in the Kubernetes ecosystem but need to be handled with extreme caution.
 
  
 ## Description
