@@ -39,7 +39,7 @@ Other OSS projects such as Open Policy Agent Gatekeeper, Kyverno, and Kubewarden
 ## Example Attack Scenarios
 Example #1: Container Breakout 1-Liner
 
-The following command if run against the Kubernetes API will create a very special pod that is running a highly privileged container. First we see `"hostPID": true`, which breaks down the most fundamental isolation of containers, letting us see all processes as if we were on the host. The `nsenter` command switches to a different `mount` namespace where `pid 1` is running which is the host `mount` namespace. Finally, we ensure the workload is `privileged` allowing us to prevent permissions errors. Boom. Container breakout in a [tweet](https://twitter.com/mauilion/status/1129468485480751104https://twitter.com/mauilion/status/1129468485480751104)! 
+The following command if run against the Kubernetes API will create a very special pod that is running a highly privileged container. First we see `"hostPID": true`, which breaks down the most fundamental isolation of containers, letting us see all processes as if we were on the host. The `nsenter` command switches to a different `mount` namespace where `pid 1` is running which is the host `mount` namespace. Finally, we ensure the workload is `privileged` allowing us to prevent permissions errors. Boom. Container breakout in a [tweet](https://twitter.com/mauilion/status/1129468485480751104)! 
 
 ```
  kubectl run r00t --restart=Never -ti --rm --image lol \
