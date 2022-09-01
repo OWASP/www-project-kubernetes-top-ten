@@ -40,7 +40,7 @@ spec:
 ```
 
 
-**Privileged containers should be disallowed**: Setting a container to `privileged` within Kubernetes, the container itself can access additional resources and kernel capabilities of the host itself. Privileged containers are dangerous as they remove many of the built-in container isolation mechanisms entirely. 
+**Privileged containers should be disallowed**: Setting a container to `privileged` within Kubernetes, the container itself can access additional resources and kernel capabilities of the host itself. Application system running as root combined with privileged containers is devastating as the user can get complete access to the host. This is , however , limited when running as non-root user.  Privileged containers are dangerous as they remove many of the built-in container isolation mechanisms entirely.  
 
 ```yaml
 apiVersion: v1  
@@ -59,12 +59,18 @@ spec:
 
 ### How to Prevent
 
-Maintaining secure configurations throughout a large, distributed Kubernetes environment can be a difficult task. While many security configurations are often set in the `securityContext` of the manifest itself there are a number of other misconfigurations that can be detected elsewhere. In order to prevent misconfigurations, they must first be detected in both runtime and in code. 
+Maintaining secure configurations throughout a large, distributed Kubernetes environment can be a difficult task. While many security configurations are often set in the `securityContext` of the manifest itself there are a number of other misconfigurations that can be detected elsewhere. In order to prevent misconfigurations, they must first be detected in both runtime and in code. We can enforce the applications : 
+
+1. Run as non-root user
+2. Run as non-privileged mode
+3. Set AllowPrivilegeEscalation: False to disallow child process from getting more privileges than its parents
 
 Tools such as Open Policy Agent can be used as a policy engine to detect these common misconfigurations. The CIS Benchmark for Kubernetes can also be used as a starting point for discovering misconfigurations. 
 
 
+
 ### Example Attack Scenarios
+
 
 
 
