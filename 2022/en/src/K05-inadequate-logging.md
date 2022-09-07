@@ -22,7 +22,7 @@ Ensure logs are monitoring for anomalous or unwanted API calls, especially any a
 
 Managed Kubernetes providers, including AWS, Azure, and GCP provide optional access to this data in their cloud console and may allow you to set up alerts on authorization failures.
 
-**Kubernetes Events:** Kubernetes events can indicate any Kubernetes resource state changes and errors, such as exceeded resource quota or pending pods, as well as any informational messages. Kubernetes events can indicate any Kubernetes resource state changes and errors, such as exceeded resource quota or pending pods, as well as any informational messages.
+**Kubernetes Events:** Kubernetes events can indicate any Kubernetes resource state changes and errors, such as exceeded resource quota or pending pods, as well as any informational messages.
 
 **Application & Container Logs:** Applications running inside of Kubernetes generate useful logs from a security perspective. The easiest method for capturing these logs is to ensure the output is written to standard output `stdout` and standard error `stderr` streams. Persisting these logs can be carried out in a number of ways. It is common for operators to configure applications to write logs to a log file which is then consumed by a sidecar container to be shipped and processed centrally. 
 
