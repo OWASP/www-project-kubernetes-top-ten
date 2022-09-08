@@ -4,7 +4,7 @@ The security context of a workload in Kubernetes is highly configurable which ca
 
 ### Description
 
-Kubernetes manifests contain many different configurations that can effect the reliability, security, and scalability of a given workload. These configurations should be audited and remediated continuously. Some examples of high-impact manifest configurations are below:
+Kubernetes manifests contain many different configurations that can affect the reliability, security, and scalability of a given workload. These configurations should be audited and remediated continuously. Some examples of high-impact manifest configurations are below:
 
 **Application processes should not run as root:** Running the process inside of a container as the `root` user is a common misconfiguration in many clusters. While `root` may be an absolute requirement for some workloads, it should be avoided when possible. If the container were to be compromised, the attacker would have root-level privileges that allow actions such as starting a malicious process that otherwise wouldn’t be permitted with other users on the system. 
 
