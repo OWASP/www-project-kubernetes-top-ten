@@ -70,6 +70,27 @@ A Wordpress pod is compromised on a cluster that has no network segmentation and
 
 A locked-down `NetworkPolicy` or service mesh implementation would have made the network connectivity to Redis from something like Wordpress impossible. 
 
+A not-so-critical web application gets compromised on a cluster which has no network segmentation and the attacker is able to make a request to metadata URL to grab kube-env file containing certificate keys which has all the details for the bootstrap process. The attack can be performed to register itself as a node and steal secrets for further escalation.
+
+A simple `NetworkPolicy` mentioned below can block users from making calls to metadata URL
+
+```
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: block-1
+spec:
+  egress:
+  - to:
+    - ipBlock:
+        cidr: 0.0.0.0/0
+        except:
+        - 169.254.169.254/32
+  podSelector: {}
+  policyTypes:
+  - Egress
+```
+
 ## References
 
 Istio Authorization: [https://istiobyexample.dev/authorization/](https://istiobyexample.dev/authorization/)
@@ -77,3 +98,5 @@ Istio Authorization: [https://istiobyexample.dev/authorization/](https://istioby
 Kubernetes CNI Explained: [https://www.tigera.io/learn/guides/kubernetes-networking/kubernetes-cni/](https://www.tigera.io/learn/guides/kubernetes-networking/kubernetes-cni/)
 
 Kubernetes Network Policies: [https://kubernetes.io/docs/concepts/services-networking/network-policies/](https://kubernetes.io/docs/concepts/services-networking/network-policies/)
+
+Hacking kubelet on GKE: [https://www.4armed.com/blog/hacking-kubelet-on-gke/](https://www.4armed.com/blog/hacking-kubelet-on-gke/)
