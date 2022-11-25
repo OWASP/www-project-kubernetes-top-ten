@@ -24,7 +24,7 @@ When adopting [Kubernetes](https://kubernetes.io), we introduce new risks to our
 
 ## Get Involved!
 
-Development of this document take place within the source repository on [Github](https://github.com/OWASP/www-project-kubernetes-top-ten).
+Development of this document take place within the source repository on [GitHub](https://github.com/OWASP/www-project-kubernetes-top-ten).
 
 * We are actively looking for organizations and individuals that will provide Kubernetes vulnerability and misconfiguration data.
 * Translation efforts
