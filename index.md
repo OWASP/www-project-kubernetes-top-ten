@@ -10,7 +10,7 @@ pitch: Welcome to the OWASP Top Ten for Kubernetes
 ---
 
 ## About the Kubernetes Top 10
-When adopting [Kubernetes](https://kubernetes.io), we introduce new risks to our applications and infrastructure. The *OWASP Kubernetes Top 10* is aimed at helping security practitioners, system administrators, and software developers prioritize risks around the Kubernetes ecosystem. The Top Ten is a prioritized list of these risks backed by data collected from organizations varying in maturity and complexity. 
+When adopting [Kubernetes](https://kubernetes.io), we introduce new risks to our applications and infrastructure. The *OWASP Kubernetes Top 10* is aimed at helping security practitioners, system administrators, and software developers prioritize risks around the Kubernetes ecosystem. The Top Ten is a prioritized list of these risks. In the future we hope for this to be backed by data collected from organizations varying in maturity and complexity.
 
 * K00:2022 [Welcome to the Kubernetes Security Top Ten](https://github.com/OWASP/www-project-kubernetes-top-ten/blob/main/2022/en/src/K00-introduction.md)
 * K01:2022 [Insecure Workload Configurations](https://github.com/OWASP/www-project-kubernetes-top-ten/blob/main/2022/en/src/K01-insecure-workload-configurations.md)
