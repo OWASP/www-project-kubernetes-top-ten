@@ -17,7 +17,7 @@ data:
 type: Opaque
 ```
 
-The `username` and `password` values in the example manifest above are *base64* encoded ** and thus not encrypted. This makes checking secrets into version control or other systems very dangerous. We will explore below how to prevent secrets leaking to unwanted locations. 
+The `username` and `password` values in the example manifest above are *base64* encoded and thus not encrypted (by default). This makes checking secrets into version control or other systems very dangerous. We will explore below how to prevent secrets leaking to unwanted locations.
 
 ## How to Prevent
 
@@ -27,17 +27,17 @@ The etcd database in general contains any information accessible via the Kuberne
 
 Always encrypt your backups using a well reviewed backup and encryption solution, and consider using full disk encryption where possible.
 
-Kubernetes supports encryption at rest, a feature introduced in 1.7, and beta since 1.13. This will encrypt Secret resources in etcd, preventing parties that gain access to your etcd backups from viewing the content of those secrets. While this feature is currently beta, it offers an additional level of defense when backups are not encrypted or an attacker gains read access to etcd.
+Kubernetes supports encryption at rest, a feature introduced in 1.7, and v1 beta since 1.13. This will encrypt Secret resources in etcd, preventing parties that gain access to your etcd backups from viewing the content of those secrets. While this feature is currently beta, it offers an additional level of defense when backups are not encrypted or an attacker gains read access to etcd.
 
 **Address Security Misconfigurations**
 
-In order to keep secrets safe and protected, it is important to start with rock-solid configuration across all of your clusters. Vulnerabilities, image security, and policy enforcement need to be in place to ultimately protect the applications from compromise. 
+In order to keep secrets safe and protected, it is important to start with rock-solid configuration across all of your clusters. Vulnerabilities, image security, and policy enforcement need to be in place to ultimately protect the applications from compromise.
 
-RBAC configuration should be locked down as well. Keep all Service Account and end-user access to least privilege - especially when it comes to accessing secrets. Always audit the RBAC configuration of third-party plugins and software installed in the cluster to ensure access to Kubernetes secrets is not granted unnecessarily. 
+RBAC configuration should be locked down as well. Keep all Service Account and end-user access to least privilege - especially when it comes to accessing secrets. Always audit the RBAC configuration of third-party plugins and software installed in the cluster to ensure access to Kubernetes secrets is not granted unnecessarily.
 
 **Ensure Logging and Auditing is in Place**
 
-Kubernetes clusters generate useful metrics around activities that can help detect malicious or anomalous behavior including access to secrets. Make sure to enable and configure [Kubernetes Audit](https://kubernetes.io/docs/tasks/debug-application-cluster/audit/) records and centralize their storage. 
+Kubernetes clusters generate useful metrics around activities that can help detect malicious or anomalous behavior including access to secrets. Make sure to enable and configure [Kubernetes Audit](https://kubernetes.io/docs/tasks/debug-application-cluster/audit/) records and centralize their storage.
 
 ## Example Attack Scenarios
 
@@ -47,7 +47,7 @@ An attacker compromises a web application running in a Kubernetes and is able to
 ls /var/run/secrets/kubernetes.io/serviceaccount
 ```
 
-The attacker installs `kubectl` in the compromised pod which by default will attempt to use the default service account located in the above directory. The attacker can then communicate with the Kubernetes API from the inside leveraging the default service account’s RBAC access. Depending on how that RBAC is configured, the attacker may be able to read secrets or deploy malicious workloads into the cluster. 
+The attacker installs `kubectl` in the compromised pod which by default will attempt to use the default service account located in the above directory. The attacker can then communicate with the Kubernetes API from the inside leveraging the default service account’s RBAC access. Depending on how that RBAC is configured, the attacker may be able to read secrets or deploy malicious workloads into the cluster.
 
 ## References
 
