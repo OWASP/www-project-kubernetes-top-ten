@@ -21,5 +21,5 @@ pitch: none yet
 - [AKS Security Explained](https://www.youtube.com/watch?v=JD3mj5bTOuk)
 
 ### Code Repository
-* [Github Repo](https://github.com/OWASP/www-project-kubernetes-top-ten)
+* [GitHub Repo](https://github.com/OWASP/www-project-kubernetes-top-ten)
 

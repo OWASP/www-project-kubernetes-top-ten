@@ -32,7 +32,7 @@ Service account (SA) tokens can be presented to the Kubernetes API as an authent
 
 ## Example Attack Scenarios
 
-***Accidental Git Leak:*** A developer accidentally checks their `.kubeconfig` file from their laptop which holds Kubernetes authentication credentials for their clusters at work. Someone scanning Github finds the credentials and replays them to the target API (unfortunately, sitting on the internet) and because the cluster is configured to authenticate using certificates, the leaked file has all of the information needed to successfully authenticate to the target cluster. 
+***Accidental Git Leak:*** A developer accidentally checks their `.kubeconfig` file from their laptop which holds Kubernetes authentication credentials for their clusters at work. Someone scanning GitHub finds the credentials and replays them to the target API (unfortunately, sitting on the internet) and because the cluster is configured to authenticate using certificates, the leaked file has all of the information needed to successfully authenticate to the target cluster.
 
 ## References
 
