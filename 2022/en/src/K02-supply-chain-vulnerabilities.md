@@ -12,7 +12,7 @@ Containers take on many forms at different phases of the development lifecycle s
 
 ## How to Prevent
 
-**Image Integrity:** Container images can be thought of as a series of software artifacts and metadata passed from a producer to a consumer. The handoff can be as simple as a developer’s IDE directly to a Kubernetes cluster or as complex as a multi-step dedicated CI/CD workflow. The integrity of the software should be validated through each phase:
+**Image Integrity:** Container images can be thought of as a series of software artifacts and metadata passed from a producer to a consumer. The handoff can be as simple as a developer’s IDE directly to a Kubernetes cluster or as complex as a multi-step dedicated CI/CD workflow. The integrity of the software should be validated through each phase using [in-toto](https://in-toto.io/) [attestations](https://github.com/in-toto/attestation). This also increases the [SLSA](https://slsa.dev) level of the build pipeline, with a higher SLSA level indicating a more resilient build pipeline.
 
 **Software Bill of Materials (SBOM)**: An SBOM provides a list of software packages, licenses, and libraries a given software artifact contains and should be used as a starting point for other security checks. Two of the most popular open standards for SBOM generation include [CycloneDX](https://cyclonedx.org/) and [SPDX](https://spdx.dev/). 
 
@@ -46,4 +46,6 @@ Docker Slim: [https://github.com/docker-slim/docker-slim](https://github.com/doc
 
 Open Policy Agent: [https://www.openpolicyagent.org/](https://www.openpolicyagent.org/)
 
+in-toto: [https://in-toto.io](https://in-toto.io)
 
+SLSA: [https://slsa.dev](https://slsa.dev)
