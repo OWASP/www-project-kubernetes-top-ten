@@ -1,6 +1,7 @@
 ## Overview
 Authentication in Kubernetes takes on my many forms and is extremely flexible. This emphasis on being highly configurable makes Kubernetes work in a number of different environments but also presents challenges when it comes to cluster and cloud security posture.
 
+![Broken Authentication - Illustration](/assets/images/K06-2022.gif)
  
 ## Description
 Several entities need to access the Kubernetes API. Authentication is the first hurdle for these requests. Authentication to the Kubernetes API is via HTTP request and the authentication method can vary from cluster to cluster. If a request cannot be authenticated, it is rejected with an HTTP status of 401. 
@@ -29,6 +30,8 @@ Service account (SA) tokens can be presented to the Kubernetes API as an authent
 ***Don’t use Service Account tokens from outside of the cluster:*** SAs can’t be bound to groups and they never expire. Using the long-lived SA from outside of the cluster opens your cluster up to significant risk. 
 
 ***Authenticate users and external services using short-lived tokens:*** All authentication tokens should be as short-lived as tolerable. This way if (and when) a credential is leaked, it is possible that it may not be replayed in the time necessary to compromise the account. 
+
+![Broken Authentication - Mitigations](/assets/images/K06-2022-mitigation.gif)
 
 ## Example Attack Scenarios
 

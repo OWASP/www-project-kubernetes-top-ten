@@ -2,6 +2,8 @@
 
 Distributing and enforcing security policies across multiple clusters, clouds, and risk tolerances quickly becomes unmanageable for security teams. The inability to detect, remediate, and prevent misconfigurations from a central location can leave clusters open to compromise. 
 
+![Policy Enforcement - Illustration](/assets/images/K04-2022.gif)
+
 ## Description
 Kubernetes policy enforcement can and should take place in a few places throughout the software delivery lifecycle. Policy enforcement gives security and compliance teams the ability to apply governance, compliance, and security requirements throughout a multi-cluster / multi-cloud infrastructure. 
 
@@ -35,6 +37,8 @@ spec:
 Detecting misconfigured workloads is not enough. Teams need the assurance that misconfigured Kubernetes objects can be blocked upon admission. This is typically handled by an [Admission Controller](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) on the Kubernetes API itself. Built-in functionality exists as part of the Kubernetes API itself called Pod Security Standards to enforce policy as part of the [Pod Security Admission Controller](https://kubernetes.io/docs/concepts/security/pod-security-admission/) in the cluster itself. It offers three modes - Privileged, Baseline, and Restricted. 
 
 Other OSS projects such as Open Policy Agent Gatekeeper, Kyverno, and Kubewarden all offer policy enforcement capabilities as well to prevent misconfigured pods from being scheduled on a cluster. 
+
+![Policy Enforcement - Mitigations](/assets/images/K04-2022-mitigation.gif)
 
 ## Example Attack Scenarios
 Example #1: Container Breakout 1-Liner

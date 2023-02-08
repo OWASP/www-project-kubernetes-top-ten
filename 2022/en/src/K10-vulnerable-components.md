@@ -1,6 +1,7 @@
 ## Overview
 Vulnerabilities exist in Kubernetes and it is up to administrators to follow CVE databases, disclosures, and updates closely and have a plan for patch management. 
 
+![Vulnerable Components - Illustration](/assets/images/K10-2022.gif)
  
 ## Description
 
@@ -23,6 +24,8 @@ Due to the sheer amount of third-party software running inside of a Kubernetes c
 **Continuous scanning:** Tools such as OPA Gatekeeper can be used to write custom rules which discover vulnerable  components in a cluster. These should be run on a regular cadence and tracked by the security operations team. 
 
 **Minimize third-party dependencies:** All third-party software should be audited independently before deployment for overly permissive RBAC, low-level kernel access, and historical vulnerability disclosure records. 
+
+![Vulnerable Components - Mitigations](/assets/images/K10-2022-mitigation.gif)
 
 ## Example Attack Scenarios
 
