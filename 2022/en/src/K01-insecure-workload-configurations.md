@@ -1,8 +1,14 @@
-### Overview
+---
+
+layout: col-sidebar
+title: "K01: Insecure Workload Configurations"
+---
+
+## Overview
 
 The security context of a workload in Kubernetes is highly configurable which can lead to serious security misconfigurations propagating across an organization’s workloads and clusters. The [Kubernetes adoption, security, and market trends report 2022](https://www.redhat.com/en/resources/kubernetes-adoption-security-market-trends-overview) from Redhat stated that nearly 53% of respondents have experienced a misconfiguration incident in their Kubernetes environments in the last 12 months.
 
-### Description
+## Description
 
 Kubernetes manifests contain many different configurations that can affect the reliability, security, and scalability of a given workload. These configurations should be audited and remediated continuously. Some examples of high-impact manifest configurations are below:
 
@@ -55,7 +61,7 @@ spec:
 	privileged: false
 ```
 
-### How to Prevent
+## How to Prevent
 
 Maintaining secure configurations throughout a large, distributed Kubernetes environment can be a difficult task. While many security configurations are often set in the `securityContext` of the manifest itself there are a number of other misconfigurations that can be detected elsewhere. In order to prevent misconfigurations, they must first be detected in both runtime and in code. We can enforce that applications:
 
@@ -65,14 +71,16 @@ Maintaining secure configurations throughout a large, distributed Kubernetes env
 
 Tools such as Open Policy Agent can be used as a policy engine to detect these common misconfigurations. The CIS Benchmark for Kubernetes can also be used as a starting point for discovering misconfigurations.
 
-### Example Attack Scenarios
+## Example Attack Scenarios
 
 TODO
 
-### References
+## References
 
 CIS Benchmarks for Kubernetes: [https://www.cisecurity.org/benchmark/kubernetes](https://www.cisecurity.org/benchmark/kubernetes)
 
 Open Policy Agent: [https://github.com/open-policy-agent/opa](https://github.com/open-policy-agent/opa)
 
 Pod Security Standards: [https://kubernetes.io/docs/concepts/security/pod-security-standards/](https://kubernetes.io/docs/concepts/security/pod-security-standards/)
+
+

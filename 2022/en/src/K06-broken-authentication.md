@@ -1,3 +1,9 @@
+---
+
+layout: col-sidebar
+title: "K06: Broken Authentication"
+---
+
 ## Overview
 Authentication in Kubernetes takes on my many forms and is extremely flexible. This emphasis on being highly configurable makes Kubernetes work in a number of different environments but also presents challenges when it comes to cluster and cloud security posture.
 

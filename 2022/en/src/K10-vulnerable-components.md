@@ -1,3 +1,9 @@
+---
+
+layout: col-sidebar
+title: "K10: Vulnerable Components"
+---
+
 ## Overview
 Vulnerabilities exist in Kubernetes and it is up to administrators to follow CVE databases, disclosures, and updates closely and have a plan for patch management. 
 
