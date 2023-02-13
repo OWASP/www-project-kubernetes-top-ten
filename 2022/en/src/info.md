@@ -1,6 +1,6 @@
 ### Relevant Links
-- [OWASP Kubernetes Top 10 Project](..)
-- [Introduction](K00-introduction)
+- [OWASP Kubernetes Top 10 Project](../../../)
+- [Introduction](index)
 - [Other Risks to Consider](other-risks)
 
 ### Top 10 Kubernetes Risks
