@@ -1,3 +1,13 @@
+---
+
+layout: col-sidebar
+title: OWASP Kubernetes Top Ten - 2022 - Supply Chain Vulnerabilities
+tags: kubernetes
+
+---
+
+[Home](/)
+
 ## Overview
 
 Containers take on many forms at different phases of the development lifecycle supply chain; each of them presenting unique security challenges. A single container alone can rely on hundreds of third-party components and dependencies making trust of origin at each phase extremely difficult. These challenges include but are not limited to image integrity, image composition, and known software vulnerabilities. 

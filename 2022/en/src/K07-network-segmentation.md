@@ -1,3 +1,13 @@
+---
+
+layout: col-sidebar
+title: OWASP Kubernetes Top Ten - 2022 - Missing Network Segmentation Controls
+tags: kubernetes
+
+---
+
+[Home](/)
+
 ## Overview
 When operating Kubernetes with multiple microservices and tenants, a key area of concern is around control of network traffic. Isolating traffic within the context of a Kubernetes cluster can happen on a few levels including between pods, namespaces, labels, and more. 
 

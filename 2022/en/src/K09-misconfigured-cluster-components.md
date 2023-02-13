@@ -1,3 +1,13 @@
+---
+
+layout: col-sidebar
+title: OWASP Kubernetes Top Ten - 2022 - Misconfigured Cluster Components
+tags: kubernetes
+
+---
+
+[Home](/)
+
 ## Overview
 A Kubernetes cluster is compromised of many different components ranging from key-value storage within etcd, the kube-apiserver, the kubelet, and more. Each of these components are highly configurable have important security responsibilities. 
 

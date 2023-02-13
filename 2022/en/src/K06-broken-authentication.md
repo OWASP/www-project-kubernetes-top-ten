@@ -1,3 +1,13 @@
+---
+
+layout: col-sidebar
+title: OWASP Kubernetes Top Ten - 2022 - Broken Authentication Mechanisms
+tags: kubernetes
+
+---
+
+[Home](/)
+
 ## Overview
 Authentication in Kubernetes takes on my many forms and is extremely flexible. This emphasis on being highly configurable makes Kubernetes work in a number of different environments but also presents challenges when it comes to cluster and cloud security posture.
 

@@ -1,3 +1,13 @@
+---
+
+layout: col-sidebar
+title: OWASP Kubernetes Top Ten - 2022 - Outdated and Vulnerable Kubernetes Components
+tags: kubernetes
+
+---
+
+[Home](/)
+
 ## Overview
 Vulnerabilities exist in Kubernetes and it is up to administrators to follow CVE databases, disclosures, and updates closely and have a plan for patch management. 
 

@@ -1,3 +1,4 @@
 remote_theme: "owasp/www--site-theme@main"
+permalink: :path
 plugins:
  - jekyll-include-cache-0.2.0

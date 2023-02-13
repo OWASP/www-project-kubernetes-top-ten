@@ -1,3 +1,13 @@
+---
+
+layout: col-sidebar
+title: OWASP Kubernetes Top Ten - 2022 - Lack of Centralized Policy Enforcement
+tags: kubernetes
+
+---
+
+[Home](/)
+
 ## Overview
 
 Distributing and enforcing security policies across multiple clusters, clouds, and risk tolerances quickly becomes unmanageable for security teams. The inability to detect, remediate, and prevent misconfigurations from a central location can leave clusters open to compromise. 

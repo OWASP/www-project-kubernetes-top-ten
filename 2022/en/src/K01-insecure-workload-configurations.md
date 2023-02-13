@@ -1,3 +1,13 @@
+---
+
+layout: col-sidebar
+title: OWASP Kubernetes Top Ten - 2022 - Insecure Workload Configurations
+tags: kubernetes
+
+---
+
+[Home](/)
+
 ### Overview
 
 The security context of a workload in Kubernetes is highly configurable which can lead to serious security misconfigurations propagating across an organization’s workloads and clusters. The [Kubernetes adoption, security, and market trends report 2022](https://www.redhat.com/en/resources/kubernetes-adoption-security-market-trends-overview) from Redhat stated that nearly 53% of respondents have experienced a misconfiguration incident in their Kubernetes environments in the last 12 months.

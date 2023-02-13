@@ -1,3 +1,13 @@
+---
+
+layout: col-sidebar
+title: OWASP Kubernetes Top Ten - 2022 - Inadequate Logging and Monitoring
+tags: kubernetes
+
+---
+
+[Home](/)
+
 ## Overview
 
 A Kubernetes environment has the ability to generate logs at a variety of levels from many different components. When logs are not captured, stored, or actively monitored attackers have the ability to exploit vulnerabilities while going largely undetected. The lack of logging and monitoring also presents challenges during incident investigation and response efforts. 
