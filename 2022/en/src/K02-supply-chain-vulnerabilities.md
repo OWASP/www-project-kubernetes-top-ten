@@ -2,6 +2,8 @@
 
 Containers take on many forms at different phases of the development lifecycle supply chain; each of them presenting unique security challenges. A single container alone can rely on hundreds of third-party components and dependencies making trust of origin at each phase extremely difficult. These challenges include but are not limited to image integrity, image composition, and known software vulnerabilities. 
 
+![Supply Chain Vulnerabilities - Illustration](/assets/images/K02-2022.gif)
+
 ## Description
 
 **Image Integrity:** Software provenance has recently attracted significant attention in the media due to events such as the [Solarwinds breach](https://www.businessinsider.com/solarwinds-hack-explained-government-agencies-cyber-security-2020-12) and a variety of [tainted third-party packages](https://therecord.media/malware-found-in-npm-package-with-millions-of-weekly-downloads/). These supply chain risks can surface in various states of the container build cycle as well as at runtime inside of Kubernetes. When systems of record do not exist regarding the contents of a container image it is possible that an unexpected container may run in a cluster. 
@@ -28,6 +30,8 @@ Containers take on many forms at different phases of the development lifecycle s
 - use a base image that’s not explicitly allowed
 - don’t include an approved SBOM
 - originated from untrusted registries
+
+![Supply Chain Vulnerabilities - Mitigations](/assets/images/K02-2022-mitigation.gif)
 
 ## Example Attack Scenarios
 

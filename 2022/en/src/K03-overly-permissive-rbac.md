@@ -1,6 +1,8 @@
 ## Overview
 [Role-Based Access Control](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) (RBAC) is the primary authorization mechanism in Kubernetes and is responsible for permissions over resources. These permissions combine verbs (get, create, delete, etc.) with resources (pods, services, nodes, etc.) and can be namespace or cluster scoped. A set of out of the box roles are provided that offer reasonable default separation of responsibility depending on what actions a client might want to perform. Configuring RBAC with least privilege enforcement is a challenge for reasons we will explore below.
 
+![Overly Permissive RBAC - Illustration](/assets/images/K03-2022.gif)
+
 ## Description
 RBAC is an extremely powerful security enforcement mechanism in Kubernetes when appropriately configured but can quickly become a massive risk to the cluster and increase the blast radius in the event of a compromise.  Below are a few examples of misconfigured RBAC:
 
@@ -141,6 +143,8 @@ The watch response contains all items in full, not just their name when they're 
 
 #### How to Prevent
 Only grant `WATCH` permission if you are also allowing that account to `GET` and `LIST` all of that resource  
+
+![Overly Permissive RBAC - Mitigations](/assets/images/K03-2022-mitigation.gif)
 
 #### Example Attack Scenarios
 ```bash
