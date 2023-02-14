@@ -1,3 +1,9 @@
+---
+
+layout: col-sidebar
+title: "K09: Misconfigured Cluster Components"
+---
+
 ## Overview
 A Kubernetes cluster is compromised of many different components ranging from key-value storage within etcd, the kube-apiserver, the kubelet, and more. Each of these components are highly configurable have important security responsibilities. 
 
