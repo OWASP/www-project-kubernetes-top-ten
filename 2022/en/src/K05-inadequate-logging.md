@@ -8,7 +8,7 @@ title: "K05: Inadequate Logging"
 
 A Kubernetes environment has the ability to generate logs at a variety of levels from many different components. When logs are not captured, stored, or actively monitored attackers have the ability to exploit vulnerabilities while going largely undetected. The lack of logging and monitoring also presents challenges during incident investigation and response efforts. 
 
-![Inadequate Logging - Illustration](/assets/images/K05-2022.gif)
+![Inadequate Logging - Illustration](../../../assets/images/K05-2022.gif)
 
 ## Description
 
@@ -42,7 +42,7 @@ Managed Kubernetes providers, including AWS, Azure, and GCP provide optional acc
 
 As outlined above, there is no shortage of logging mechanisms available within the Kubernetes ecosystem. A robust security logging architecture should not only capture relevant security events, but also be centralized in a way that is queryable, long term, and maintains integrity.
 
-![Inadequate Logging - Mitigations](/assets/images/K05-2022-mitigation.gif)
+![Inadequate Logging - Mitigations](../../../assets/images/K05-2022-mitigation.gif)
 
 ## Example Attack Scenarios
 

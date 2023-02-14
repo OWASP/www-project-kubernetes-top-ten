@@ -8,7 +8,7 @@ title: "K02: Supply Chain Vulnerabilities"
 
 Containers take on many forms at different phases of the development lifecycle supply chain; each of them presenting unique security challenges. A single container alone can rely on hundreds of third-party components and dependencies making trust of origin at each phase extremely difficult. These challenges include but are not limited to image integrity, image composition, and known software vulnerabilities. 
 
-![Supply Chain Vulnerabilities - Illustration](/assets/images/K02-2022.gif)
+![Supply Chain Vulnerabilities - Illustration](../../../assets/images/K02-2022.gif)
 
 ## Description
 
@@ -37,7 +37,7 @@ Containers take on many forms at different phases of the development lifecycle s
 - don’t include an approved SBOM
 - originated from untrusted registries
 
-![Supply Chain Vulnerabilities - Mitigations](/assets/images/K02-2022-mitigation.gif)
+![Supply Chain Vulnerabilities - Mitigations](../../../assets/images/K02-2022-mitigation.gif)
 
 ## Example Attack Scenarios
 
