@@ -24,11 +24,10 @@ When adopting [Kubernetes](https://kubernetes.io), we introduce new risks to our
 * [K08: Secrets Management Failures](./2022/en/src/K08-secrets-management)
 * [K09: Misconfigured Cluster Components](./2022/en/src/K09-misconfigured-cluster-components)
 * [K10: Outdated and Vulnerable Kubernetes Components](./2022/en/src/K10-vulnerable-components)
-* [Other Risks to Consider](./2022/en/other-risks)
-
+* [Other Risks to Consider](./2022/en/src/other-risks)
 
 ## Getting Involved
-Development, issues, and discussion all take place on the OWASP Top Ten [GitHub](https://github.com/OWASP/www-project-kubernetes-top-ten) repository. Join the conversation!
+Development, issues, and discussion all take place on the OWASP Kubernetes Top Ten [GitHub](https://github.com/OWASP/www-project-kubernetes-top-ten) repository. Join the conversation!
 
 ## Licensing
 The Kubernetes OWASP Top 10 document is licensed under the CC BY-NC-SA 4.0, the Creative Commons Attribution-ShareAlike 4.0 license. Some rights reserved.

@@ -1,19 +1,12 @@
----
-layout: col-sidebar
-title: OWASP Kubernetes Top 10
-tags: kubernetes
-level: 2
-type: documentation
-pitch: none yet
----
-
 ### Project Information
 
-{:refdef: style="width: 50px; height: 50px"}
-![Incubator Project](/assets/images/common/owasp_level_incubator.svg)
-{: refdef}
+* <i class="fas fa-egg" style="font-size: 1.3em; color:#53AAE5;"></i>
+  <span style="font-size: 1.3em;">Incubator Project</span>
 
-![Documentation Project](/assets/images/common/owasp_documentation_project.svg)
+* <i class="fas fa-shield-alt" style="color:#233e81;"></i> Defender
+* <i class="fas fa-toolbox" style="color:#233e81;"></i> Builder
+
+* <i class="fas fa-book" style="color:#233e81;"></i> Documentation
 
 ### Talks
 - [KubeCon 2019: Attacking and Defending Kubernetes Clusters](https://www.youtube.com/watch?v=UdMFTdeAL1s)
@@ -22,4 +15,3 @@ pitch: none yet
 
 ### Code Repository
 * [GitHub Repo](https://github.com/OWASP/www-project-kubernetes-top-ten)
-
