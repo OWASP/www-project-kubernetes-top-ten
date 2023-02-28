@@ -33,4 +33,4 @@ Development, issues, and discussion all take place on the OWASP Kubernetes Top T
 The Kubernetes OWASP Top 10 document is licensed under the CC BY-NC-SA 4.0, the Creative Commons Attribution-ShareAlike 4.0 license. Some rights reserved.
 
 ## Project Leaders
-- [Jimmy Mesta](https://twitter.com/jimmesta) 
+- [Jimmy Mesta, Co-founder & CTO at KSOC](https://twitter.com/jimmesta) 
