@@ -6,55 +6,128 @@ title: "K02: Supply Chain Vulnerabilities"
 
 ## Overview
 
-Containers take on many forms at different phases of the development lifecycle supply chain; each of them presenting unique security challenges. A single container alone can rely on hundreds of third-party components and dependencies making trust of origin at each phase extremely difficult. These challenges include but are not limited to image integrity, image composition, and known software vulnerabilities. 
+Containers take on many forms at different phases of the development lifecycle
+supply chain; each of them presenting unique security challenges. A single
+container alone can rely on hundreds of third-party components and dependencies
+making trust of origin at each phase extremely difficult. These challenges
+include but are not limited to image integrity, image composition, and known
+software vulnerabilities.
 
-![Supply Chain Vulnerabilities - Illustration](../../../assets/images/K02-2022.gif)
+![Supply Chain Vulnerabilities -
+Illustration](../../../assets/images/K02-2022.gif)
 
 ## Description
 
-**Image Integrity:** Software provenance has recently attracted significant attention in the media due to events such as the [Solarwinds breach](https://www.businessinsider.com/solarwinds-hack-explained-government-agencies-cyber-security-2020-12) and a variety of [tainted third-party packages](https://therecord.media/malware-found-in-npm-package-with-millions-of-weekly-downloads/). These supply chain risks can surface in various states of the container build cycle as well as at runtime inside of Kubernetes. When systems of record do not exist regarding the contents of a container image it is possible that an unexpected container may run in a cluster. 
+**Image Integrity:** Software provenance has recently attracted significant
+attention in the media due to events such as the [Solarwinds
+breach](https://www.businessinsider.com/solarwinds-hack-explained-government-agencies-cyber-security-2020-12)
+and a variety of [tainted third-party
+packages](https://therecord.media/malware-found-in-npm-package-with-millions-of-weekly-downloads/).
+These supply chain risks can surface in various states of the container build
+cycle as well as at runtime inside of Kubernetes. When systems of record do not
+exist regarding the contents of a container image it is possible that an
+unexpected container may run in a cluster.
 
-**Image Composition:** A container image consists of layers, each of which can present security implications. A properly constructed container image not only reduces attack surface, but can also increase deployment efficiency. Images with extraneous software can be leveraged to elevate privileges or exploit known vulnerabilities. 
+**Image Composition:** A container image consists of layers, each of which can
+present security implications. A properly constructed container image not only
+reduces attack surface, but can also increase deployment efficiency. Images with
+extraneous software can be leveraged to elevate privileges or exploit known
+vulnerabilities.
 
-**Known Software Vulnerabilities**: Due to their extensive use of third-party packages, many container images are inherently dangerous to pull into a trusted environment and run. For example, if a given layer in an image contains a version of OpenSSL that is susceptible to a known exploit it may be propagated to several workloads and unknowingly put an entire cluster at risk.
+**Known Software Vulnerabilities**: Due to their extensive use of third-party
+packages, many container images are inherently dangerous to pull into a trusted
+environment and run. For example, if a given layer in an image contains a
+version of OpenSSL that is susceptible to a known exploit it may be propagated
+to several workloads and unknowingly put an entire cluster at risk.
 
 ## How to Prevent
 
-**Image Integrity:** Container images can be thought of as a series of software artifacts and metadata passed from a producer to a consumer. The handoff can be as simple as a developer’s IDE directly to a Kubernetes cluster or as complex as a multi-step dedicated CI/CD workflow. The integrity of the software should be validated through each phase using [in-toto](https://in-toto.io/) [attestations](https://github.com/in-toto/attestation). This also increases the [SLSA](https://slsa.dev) level of the build pipeline, with a higher SLSA level indicating a more resilient build pipeline.
+**Image Integrity:** Container images can be thought of as a series of software
+artifacts and metadata passed from a producer to a consumer. The handoff can be
+as simple as a developer’s IDE directly to a Kubernetes cluster or as complex as
+a multi-step dedicated CI/CD workflow. The integrity of the software should be
+validated through each phase using [in-toto](https://in-toto.io/)
+[attestations](https://github.com/in-toto/attestation). This also increases the
+[SLSA](https://slsa.dev) level of the build pipeline, with a higher SLSA level
+indicating a more resilient build pipeline.
 
-**Software Bill of Materials (SBOM)**: An SBOM provides a list of software packages, licenses, and libraries a given software artifact contains and should be used as a starting point for other security checks. Two of the most popular open standards for SBOM generation include [CycloneDX](https://cyclonedx.org/) and [SPDX](https://spdx.dev/). 
+**Software Bill of Materials (SBOM)**: An SBOM provides a list of software
+packages, licenses, and libraries a given software artifact contains and should
+be used as a starting point for other security checks. Two of the most popular
+open standards for SBOM generation include [CycloneDX](https://cyclonedx.org/)
+and [SPDX](https://spdx.dev/).
 
-**Image Signing**: Each of the steps throughout a DevOps workflow can introduce attacks or unexpected consequences. Producers and consumers use cryptographic key-pairs to sign and verify the artifact at each step of the supply chain to detect tampering with the artifacts themselves. The open-source [Cosign](https://github.com/sigstore/cosign) project is an open source project aimed at verifying container images. 
+**Image Signing**: Each of the steps throughout a DevOps workflow can introduce
+attacks or unexpected consequences. Producers and consumers use cryptographic
+key-pairs to sign and verify the artifact at each step of the supply chain to
+detect tampering with the artifacts themselves. The open-source
+[Cosign](https://github.com/sigstore/cosign) project is an open source project
+aimed at verifying container images.
 
-**Image Composition:** Container images should be created using minimal OS packages and dependencies to reduce the attack surface if the workload should be compromised. Consider utilizing alternative base images such as [Distroless](https://github.com/GoogleContainerTools/distroless) or [Scratch](https://hub.docker.com/_/scratch) to not only improve security posture but also drastically reduce the noise generated by vulnerability scanners. Using distroless images also reduces the image size which ultimately helps in faster CI/CD build.  It is also important to ensure your base images are up-to-date with the latest security patches. Tools such as [Docker Slim](https://github.com/docker-slim/docker-slim) are available to optimize your image footprint for performance and security reasons. 
+**Image Composition:** Container images should be created using minimal OS
+packages and dependencies to reduce the attack surface if the workload should be
+compromised. Consider utilizing alternative base images such as
+[Distroless](https://github.com/GoogleContainerTools/distroless) or
+[Scratch](https://hub.docker.com/_/scratch) to not only improve security posture
+but also drastically reduce the noise generated by vulnerability scanners. Using
+distroless images also reduces the image size which ultimately helps in faster
+CI/CD build.  It is also important to ensure your base images are up-to-date
+with the latest security patches. Tools such as [Docker
+Slim](https://github.com/docker-slim/docker-slim) are available to optimize your
+image footprint for performance and security reasons.
 
-**Known Software Vulnerabilities:** Image vulnerability scanning aims to enumerate known security issues in container images and should be used as a first line of defense. ****You can identify all upstream software with vulnerabilities simply by looking for images built with a specific layer. Images should be patched quickly by simply replacing the layer containing the vulnerability and rebuilding the container to use up-to-date, fixed packages. Open source tools such as [Clair](https://github.com/coreos/clair) and [trivy](https://github.com/aquasecurity/trivy) will statically analyze container images for known vulnerabilities such as CVEs and should be used as early in the development cycle as reasonably possible. 
+**Known Software Vulnerabilities:** Image vulnerability scanning aims to
+enumerate known security issues in container images and should be used as a
+first line of defense. ****You can identify all upstream software with
+vulnerabilities simply by looking for images built with a specific layer. Images
+should be patched quickly by simply replacing the layer containing the
+vulnerability and rebuilding the container to use up-to-date, fixed packages.
+Open source tools such as [Clair](https://github.com/coreos/clair) and
+[trivy](https://github.com/aquasecurity/trivy) will statically analyze container
+images for known vulnerabilities such as CVEs and should be used as early in the
+development cycle as reasonably possible.
 
-**Enforcing Policy:** Prevent unapproved images from being used with the Kubernetes [admission controls](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/) and policy engines such as [Open Policy Agent](https://www.openpolicyagent.org/) and [Kyverno](https://kyverno.io) to reject workloads images which:
+**Enforcing Policy:** Prevent unapproved images from being used with the
+Kubernetes [admission
+controls](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/)
+and policy engines such as [Open Policy Agent](https://www.openpolicyagent.org/)
+and [Kyverno](https://kyverno.io) to reject workloads images which:
 
 - haven’t been scanned for vulnerabilities
 - use a base image that’s not explicitly allowed
 - don’t include an approved SBOM
 - originated from untrusted registries
 
-![Supply Chain Vulnerabilities - Mitigations](../../../assets/images/K02-2022-mitigation.gif)
+![Supply Chain Vulnerabilities -
+Mitigations](../../../assets/images/K02-2022-mitigation.gif)
 
 ## Example Attack Scenarios
 
 Example #1: Compromised CI/CD Pipeline
 
-Most teams use some form of automation to build and push container images to a central registry. The image is then pulled from Kubernetes as defined in the object manifest. If that build system were to be compromised and a malicious package was injected as part of the build Kubernetes would pull the image into the cluster and run it. Malware may be executed, cryptocurrency miners may be installed, or a backdoor planted. 
+Most teams use some form of automation to build and push container images to a
+central registry. The image is then pulled from Kubernetes as defined in the
+object manifest. If that build tool were to be compromised and a malicious
+package was injected as part of the build Kubernetes would pull the image into
+the cluster and run it. Malware may be executed, cryptocurrency miners may be
+installed, or a backdoor planted.
 
 ## References
-Admission Controllers: [https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/)
 
-Co-Sign: [https://github.com/sigstore/cosign](https://github.com/sigstore/cosign)
+Admission Controllers:
+[https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/)
 
-CycloneDX: [https://owasp.org/www-project-cyclonedx/](https://owasp.org/www-project-cyclonedx/)
+Co-Sign:
+[https://github.com/sigstore/cosign](https://github.com/sigstore/cosign)
 
-Docker Slim: [https://github.com/docker-slim/docker-slim](https://github.com/docker-slim/docker-slim)
+CycloneDX:
+[https://owasp.org/www-project-cyclonedx/](https://owasp.org/www-project-cyclonedx/)
 
-Open Policy Agent: [https://www.openpolicyagent.org/](https://www.openpolicyagent.org/)
+Docker Slim:
+[https://github.com/docker-slim/docker-slim](https://github.com/docker-slim/docker-slim)
+
+Open Policy Agent:
+[https://www.openpolicyagent.org/](https://www.openpolicyagent.org/)
 
 in-toto: [https://in-toto.io](https://in-toto.io)
 
