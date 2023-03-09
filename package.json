@@ -1,0 +1,31 @@
+{
+    "name": "www-project-kubernetes-top-ten",
+    "version": "0.0.1",
+    "description": "OWASP Kubernetes Top Ten",
+    "dependencies": {},
+    "devDependencies": {
+        "markdownlint-cli": "^0.32.2",
+        "textlint": "^12.5.1",
+        "textlint-filter-rule-comments": "^1.2.2",
+        "textlint-filter-rule-allowlist": "^4.0.0",
+        "textlint-rule-terminology": "^3.0.4",
+        "markdown-link-check": "^3.10.3"
+    },
+    "scripts": {
+        "test": "npm run lint-markdown && npm run lint-terminology",
+        "lint-terminology": "textlint ./2022",
+        "lint-markdown": "markdownlint ./2022",
+        "link-check": "find 2022 -name \\*.md -exec markdown-link-check -c markdown-link-check-config.json 1> log 2> err {} \\; && if [ -e err ] && grep -q  \"ERROR:\" err ; then exit 113  ; else echo -e \"All good\"; fi"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/OWASP/www-project-kubernetes-top-ten.git"
+      },
+      "author": "OWASP",
+      "license": "CC-BY-SA-4.0",
+      "bugs": {
+        "url": "https://github.com/OWASP/www-project-kubernetes-top-ten/issues"
+      },
+      "homepage": "https://github.com/OWASP/www-project-kubernetes-top-ten#readme"
+    
+}
