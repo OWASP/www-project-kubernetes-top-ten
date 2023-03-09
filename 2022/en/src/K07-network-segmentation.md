@@ -7,7 +7,7 @@ title: "K07: Network Segmentation"
 ## Overview
 When operating Kubernetes with multiple microservices and tenants, a key area of concern is around control of network traffic. Isolating traffic within the context of a Kubernetes cluster can happen on a few levels including between pods, namespaces, labels, and more. 
 
-![Network Segmentation - Illustration](/assets/images/K07-2022.gif)
+![Network Segmentation - Illustration](../../../assets/images/K07-2022.gif)
  
 ## Description
 
@@ -71,7 +71,7 @@ Container Network Interface (CNI) is an open source [specification](http://githu
 
 When choosing a CNI, it is most important to understand the feature-set that you are seeking from a security perspective and the resource overhead and maintenance related to using the plugin. 
 
-![Network Segmentation - Mitigation](/assets/images/K07-2022-mitigation.gif)
+![Network Segmentation - Mitigation](../../../assets/images/K07-2022-mitigation.gif)
 
 ## Example Attack Scenarios
 

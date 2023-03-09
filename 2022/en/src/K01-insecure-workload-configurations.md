@@ -8,7 +8,7 @@ title: "K01: Insecure Workload Configurations"
 
 The security context of a workload in Kubernetes is highly configurable which can lead to serious security misconfigurations propagating across an organization’s workloads and clusters. The [Kubernetes adoption, security, and market trends report 2022](https://www.redhat.com/en/resources/kubernetes-adoption-security-market-trends-overview) from Redhat stated that nearly 53% of respondents have experienced a misconfiguration incident in their Kubernetes environments in the last 12 months.
 
-![Insecure Workload Configuration - Illustration](/assets/images/K01-2022.gif)
+![Insecure Workload Configuration - Illustration](../../../assets/images/K01-2022.gif)
 
 ## Description
 
@@ -73,7 +73,7 @@ Maintaining secure configurations throughout a large, distributed Kubernetes env
 
 Tools such as Open Policy Agent can be used as a policy engine to detect these common misconfigurations. The CIS Benchmark for Kubernetes can also be used as a starting point for discovering misconfigurations.
 
-![Insecure Workload Configuration - Mitigations](/assets/images/K01-2022-mitigation.gif)
+![Insecure Workload Configuration - Mitigations](../../../assets/images/K01-2022-mitigation.gif)
 
 ## Example Attack Scenarios
 

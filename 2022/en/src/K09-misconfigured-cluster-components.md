@@ -7,7 +7,7 @@ title: "K09: Misconfigured Cluster Components"
 ## Overview
 A Kubernetes cluster is compromised of many different components ranging from key-value storage within etcd, the kube-apiserver, the kubelet, and more. Each of these components are highly configurable have important security responsibilities. 
 
-![Misconfigured Cluster Components - Illustration](/assets/images/K09-2022.gif)
+![Misconfigured Cluster Components - Illustration](../../../assets/images/K09-2022.gif)
 
 ## Description
 
@@ -40,7 +40,7 @@ Authorization checks should always be performed when communicating with the Kube
 
 A simple security check you can perform is to inspect the internet accessibility of the API server itself. It is recommended to keep the Kubernetes API off of public network as seen in recent [news](https://www.bleepingcomputer.com/news/security/over-900-000-kubernetes-instances-found-exposed-online/). 
 
-![Misconfigured Cluster Components - Mitigations](/assets/images/K09-2022-mitigation.gif)
+![Misconfigured Cluster Components - Mitigations](../../../assets/images/K09-2022-mitigation.gif)
 
 ## How to Prevent
 
