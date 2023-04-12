@@ -53,6 +53,20 @@ Other OSS projects such as Open Policy Agent Gatekeeper, Kyverno, and Kubewarden
 Kubewarden provides a set of standard policies out-of-the-box, but users can also define their own custom policies. These policies can enforce rules such as restricting access to specific resources, validating inputs, and detecting security vulnerabilities.
 Kubewarden also provides an extensible architecture that allows users to integrate with other systems and tools. For example, Kubewarden can be combine with external identity providers, vulnerability scanners, and compliance tools.
 
+**Technical aspects comparison table**
+
+| Tool                      | OPA Gatekeeper | Kyverno | Kubewarden | 
+|---------------------------|----------------|-----------|-------------|
+| Engine Language                  | GO           | GO | GO	        |
+| Admission Controller      | Yes            | Yes       | Yes         |
+| Mutating Webhook          | Yes            | Yes       | Yes         |
+| Validation Rule Language  | Rego           | YAML/JSON | Any compiled to WebAssembly        |
+| Support for Custom Resources | Yes        | Yes       | Yes         | 
+| Extensibility             | Highly Extensible | Highly Extensible | Highly Extensible |
+| Community                 | Large and Active | Growing   | Small and Active |
+| Integration   | Native Integration with Kustomize and Helm | Native Integration with Kustomize and Helm | Native Integration with Open Policy Agent |
+| Ease of Installation       | Moderate       | Easy      | Moderate    |
+
 ![Policy Enforcement - Mitigations](../../../assets/images/K04-2022-mitigation.gif)
 
 ## Example Attack Scenarios
@@ -71,10 +85,7 @@ The following command if run against the Kubernetes API will create a very speci
 ```
 
 ## References
-OPA Gatekeeper: [https://github.com/open-policy-agent/gatekeeper](https://github.com/open-policy-agent/gatekeeper)
-
-Pod Security Admission Controller: [https://kubernetes.io/docs/concepts/security/pod-security-admission/](https://kubernetes.io/docs/concepts/security/pod-security-admission/)
-
-Kyverno: [https://kyverno.io/](https://kyverno.io/)
-
-Kubewarden: [kubewarden.io](https://www.kubewarden.io/)
+- OPA Gatekeeper: [https://github.com/open-policy-agent/gatekeeper](https://github.com/open-policy-agent/gatekeeper)
+- Pod Security Admission Controller: [https://kubernetes.io/docs/concepts/security/pod-security-admission/](https://kubernetes.io/docs/concepts/security/pod-security-admission/)
+- Kyverno: [https://kyverno.io/](https://kyverno.io/)
+- Kubewarden: [kubewarden.io](https://www.kubewarden.io/)
