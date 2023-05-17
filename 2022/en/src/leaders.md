@@ -1,2 +1,4 @@
+<!-- markdownlint-disable-next-line MD041 -->
 ### Leaders
-* [Jimmy Mesta](mailto:jimmy@ksoc.com)
+
+- [Jimmy Mesta](mailto:jimmy@ksoc.com)
