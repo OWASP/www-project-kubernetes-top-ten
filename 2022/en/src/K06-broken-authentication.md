@@ -68,8 +68,17 @@ authentication (typically part of OIDC).
 
 ### Don’t use Service Account tokens from outside of the cluster
 
-SAs can’t be bound to groups and they never expire. Using the long-lived SA from
-outside of the cluster opens your cluster up to significant risk.
+For use inside the cluster, Kubernetes Service Account tokens are
+are obtained directly using the TokenRequest API, and are mounted into Pods
+using a projected volume. For use outside the cluster, these tokens must be
+manually provisioned via a [Kubernetes Secret](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#manually-create-a-long-lived-api-token-for-a-serviceaccount)
+and have no expiration. Using long-lived SA tokens from outside of the cluster
+opens your cluster up to significant risk.
+
+If a token based approach is required, short-lived tokens can be provisioned
+by the [TokenRequest API](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-request-v1/)
+or using [`kubectl create token` with the `--duration`
+flag](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/).
 
 ### Authenticate users and external services using short-lived tokens
 
