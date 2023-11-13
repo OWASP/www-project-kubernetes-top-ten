@@ -68,8 +68,7 @@ authentication (typically part of OIDC).
 
 ### Don’t use Service Account tokens from outside of the cluster
 
-For use inside the cluster, Kubernetes Service Account tokens are
-are obtained directly using the TokenRequest API, and are mounted into Pods
+For use inside the cluster, Kubernetes Service Account tokens are obtained directly using the TokenRequest API, and are mounted into Pods
 using a projected volume. For use outside the cluster, these tokens must be
 manually provisioned via a [Kubernetes Secret](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#manually-create-a-long-lived-api-token-for-a-serviceaccount)
 and have no expiration. Using long-lived SA tokens from outside of the cluster
