@@ -134,7 +134,9 @@ of that resource
 
 ```bash
 
-# tested on minikube version: v1.32.0 (commit: 8220a6eb95f0a4d75f7f2d7b14cef975f050512d)
+# tested on
+# minikube version: v1.32.0 (commit: 8220a6eb95f0a4d75f7f2d7b14cef975f050512d)
+# kubectl version: Client Version: v1.28.4, Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3, Server Version: v1.28.3
 
 # export names
 export serviceName=list-sa
@@ -236,7 +238,9 @@ Mitigations](../../../assets/images/K03-2022-mitigation.gif)
 ```bash
 
 
-# tested on minikube version: v1.32.0 (commit: 8220a6eb95f0a4d75f7f2d7b14cef975f050512d)
+# tested on
+# minikube version: v1.32.0 (commit: 8220a6eb95f0a4d75f7f2d7b14cef975f050512d)
+# kubectl version: Client Version: v1.28.4, Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3, Server Version: v1.28.3
 
 # export names
 export serviceName=watch-sa
@@ -244,9 +248,10 @@ export podName=my-watch-pod
 export roleName=role-watch-secret
 export roleBindingName=rolebinding-watch-secrets-default-ns
 
-# Create example A, which can only watch secrets in the default namespace
-# It does not have the GET permission
+# create list-sa service account
 kubectl create serviceaccount $serviceName
+
+# create RBAC rules and binding it
 kubectl create role $roleName --verb=watch --resource=secrets
 kubectl create rolebinding $roleBindingName --role=$roleName --serviceaccount=default:$serviceName
 
@@ -275,12 +280,34 @@ kubectl exec -it $podName bash
 TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
 
 # (inside the pod) try to retrieve the secret
-# !! Failure !!
 curl -H "Authorization: Bearer $TOKEN" https://kubernetes/api/v1/namespaces/default/secrets/abcd --insecure
+{
+  "kind": "Status",
+  "apiVersion": "v1",
+  "metadata": {},
+  "status": "Failure",
+  "message": "secrets \"abcd\" is forbidden: User \"system:serviceaccount:default:watch-sa\" cannot get resource \"secrets\" in API group \"\" in the namespace \"default\"",
+  "reason": "Forbidden",
+  "details": {
+    "name": "abcd",
+    "kind": "secrets"
+  },
+  "code": 403
+}
 
-# !! Failure !!
 curl -H "Authorization: Bearer $TOKEN" https://kubernetes/api/v1/namespaces/default/secrets --insecure
-  
+{
+  "kind": "Status",
+  "apiVersion": "v1",
+  "metadata": {},
+  "status": "Failure",
+  "message": "secrets is forbidden: User \"system:serviceaccount:default:watch-sa\" cannot list resource \"secrets\" in API group \"\" in the namespace \"default\"",
+  "reason": "Forbidden",
+  "details": {
+    "kind": "secrets"
+  },
+  "code": 403
+}
   
 # Now to get all secrets in the default namespace, despite not having "get" permission
 curl -H "Authorization: Bearer $TOKEN" https://kubernetes/api/v1/namespaces/default/secrets?watch=true --insecure
