@@ -92,9 +92,9 @@ spec:
 **Resource constraints should be enforced**: By default, containers run with
 unbounded compute resources on a Kubernetes cluster. CPU requests and limits
 can be attributed to individual containers within a pod. If you don't specify
-a CPU limit for a container, it means there's no upper bound on the CPU 
+a CPU limit for a container, it means there's no upper bound on the CPU
 resources it can consume. While this flexibility can be advantageous, it also
-poses a risk for potential resource abuse, such as crypto-mining, as the 
+poses a risk for potential resource abuse, such as crypto-mining, as the
 container could potentially utilize all available CPU resources on the
 hosting node.
 
@@ -126,8 +126,10 @@ can enforce that applications:
 
 1. Run as non-root user
 2. Run as non-privileged mode
-3. Set AllowPrivilegeEscalation: False to disallow child process from getting more privileges than its parents.
-4. Set a LimitRange to constrain the resource allocations for each applicable object kind in a namespace.
+3. Set AllowPrivilegeEscalation: False to disallow child process from
+getting more privileges than its parents.
+4. Set a LimitRange to constrain the resource allocations for each applicable
+object kind in a namespace.
 
 Tools such as Open Policy Agent can be used as a policy engine to detect these
 common misconfigurations. The CIS Benchmark for Kubernetes can also be used as a
