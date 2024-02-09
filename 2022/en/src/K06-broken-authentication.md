@@ -56,6 +56,38 @@ compromise or leak of private key material. Certificates are also more
 cumbersome to configure, sign, and distribute. A certificate may be used as a
 “Break Glass” authentication mechanism but not for primary auth.
 
+### Avoid Ingress Object Creation without TLS Certificates
+
+TLS certificates serve as a means of authenticating the server to the
+client. When an Ingress Object lacks TLS certificates, there is no
+assurance that the server the client is connecting to is legitimate.
+This opens the door for man-in-the-middle (MITM) attacks where attackers
+can intercept and impersonate the server, potentially leading to data
+theft or unauthorized access.
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: secure-ingress
+spec:
+  tls:
+    - hosts:
+        - example.com  # Replace with your domain
+      secretName: tls-secret  # Replace with the name of your TLS secret
+  rules:
+    - host: example.com  # Replace with your domain
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: your-service-name  # Replace with your backend service name
+                port:
+                  number: 80  # Replace with your service port number
+```
+
 ### Never roll your own authentication
 
 Just like crypto, you should not build something novel when it isn’t necessary.
