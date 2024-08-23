@@ -144,6 +144,7 @@ Example #1: Testing Network Vulnerabilities From Within A Pod
 
 Even if you're inside of the network (internal LAN, externally, etc.), an attacker may not have a machine to test for vulnerabilities on the cluster network. They could use a Pod that has root permissions to bring down certain packages and scan the environment, like Nmap.
 
+Below is a Deployment configuration that runs one replicas (Pod) with Root access.
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -169,9 +170,12 @@ spec:
         - containerPort: 80
 ```
 
+You can then `exec` into that Pod, which is an "SSH-like" method of accessing the Pod
 ```
-kubectl exec -ti nginx-deployment-6577b4688f-w9sw9 -- bash
+kubectl exec -ti nginx-deployment-6577b4688f-w9sw9 -- /bin/bash
 ```
+
+3. Install `nmap`, which is a popular network vulnerability scanner
 
 ```
 apt install nmap -y
