@@ -140,7 +140,95 @@ Mitigations](../../../assets/images/K01-2022-mitigation.gif)
 
 ## Example Attack Scenarios
 
-TODO
+Example #1: Testing Network Vulnerabilities From Within A Pod
+
+Even if you're inside of the network (internal LAN, externally, etc.), an attacker may not have a machine to test for vulnerabilities on the cluster network. They could use a Pod that has root permissions to bring down certain packages and scan the environment, like Nmap.
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginxdeployment
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginxdeployment
+    spec:
+      containers:
+      - name: nginxdeployment
+        image: nginx:latest
+        securityContext:
+          allowPrivilegeEscalation: true
+          privileged: true
+        ports:
+        - containerPort: 80
+```
+
+```
+kubectl exec -ti nginx-deployment-6577b4688f-w9sw9 -- bash
+```
+
+```
+apt install nmap -y
+```
+
+You may be thinking "but the Pod is on it's own network, so how could it see the host network?". Even though that's true, it's still within the host network. For example, if you run an `ifconfig` in the Pod, you’ll see the Pods IP address that was handed out from the CNI.
+
+```
+root@nginx-deployment-6577b4688f-w9sw9:/# ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.0.2.81  netmask 255.255.255.255  broadcast 0.0.0.0
+```
+
+However, if you run an `nmap` scan on the IP range that the Control Plane and Worker Nodes are on, you'll see every host within that network, including the Control Plane (kubernetes.default.svc.cluster.local)
+```
+root@nginx-deployment-6577b4688f-w9sw9:/# nmap -sn 192.168.1.0/24 
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-08-23 19:17 UTC
+Nmap scan report for Gateway (192.168.1.1)
+Host is up (0.0083s latency).
+Nmap scan report for 192.168.1.13
+Host is up (0.063s latency).
+Nmap scan report for talos-2vg-tzm (192.168.1.31)
+Host is up (0.00034s latency).
+Nmap scan report for ubuntu-server (192.168.1.49)
+Host is up (0.00039s latency).
+Nmap scan report for 192.168.1.70
+Host is up (0.00019s latency).
+Nmap scan report for 192-168-1-76.hubble-peer.kube-system.svc.cluster.local (192.168.1.76)
+Host is up (0.000063s latency).
+Nmap scan report for 192-168-1-100.kubernetes.default.svc.cluster.local (192.168.1.100)
+Host is up (0.00026s latency).
+Nmap scan report for talos-74k-uwa (192.168.1.110)
+Host is up (0.00066s latency).
+```
+
+Now that you know the Control Plane IP address, you can scan what Ports are open.
+
+```
+nmap --top-ports 10 192.168.1.100
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-08-23 19:22 UTC
+Nmap scan report for 192-168-1-100.kubernetes.default.svc.cluster.local (192.168.1.100)
+Host is up (0.00026s latency).
+
+PORT     STATE  SERVICE
+21/tcp   closed ftp
+22/tcp   open   ssh
+23/tcp   closed telnet
+25/tcp   closed smtp
+80/tcp   closed http
+110/tcp  closed pop3
+139/tcp  closed netbios-ssn
+443/tcp  closed https
+445/tcp  closed microsoft-ds
+3389/tcp closed ms-wbt-server
+```
+
+
 
 ## References
 
