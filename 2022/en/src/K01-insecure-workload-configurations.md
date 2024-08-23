@@ -175,7 +175,7 @@ You can then `exec` into that Pod, which is an "SSH-like" method of accessing th
 kubectl exec -ti nginx-deployment-6577b4688f-w9sw9 -- /bin/bash
 ```
 
-3. Install `nmap`, which is a popular network vulnerability scanner
+Install `nmap`, which is a popular network vulnerability scanner
 
 ```
 apt install nmap -y
