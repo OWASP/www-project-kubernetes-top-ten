@@ -131,7 +131,7 @@ getting more privileges than its parents.
 4. Set a LimitRange to constrain the resource allocations for each applicable
 object kind in a namespace.
 
-Tools such as Open Policy Agent can be used as a policy engine to detect these
+Tools such as Open Policy Agent or Kyverno can be used as a policy engine to detect these
 common misconfigurations. The CIS Benchmark for Kubernetes can also be used as a
 starting point for discovering misconfigurations.
 
@@ -149,6 +149,9 @@ CIS Benchmarks for Kubernetes:
 
 Open Policy Agent:
 [https://github.com/open-policy-agent/opa](https://github.com/open-policy-agent/opa)
+
+Kyverno:
+[https://github.com/kyverno/kyverno/](https://github.com/kyverno/kyverno/)
 
 Pod Security Standards:
 [https://kubernetes.io/docs/concepts/security/pod-security-standards/](https://kubernetes.io/docs/concepts/security/pod-security-standards/)
