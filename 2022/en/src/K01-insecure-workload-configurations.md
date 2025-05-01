@@ -11,7 +11,7 @@ can lead to serious security misconfigurations propagating across an
 organization’s workloads and clusters. The [Kubernetes adoption, security, and
 market trends report
 2022](https://www.redhat.com/en/resources/kubernetes-adoption-security-market-trends-overview)
-from Redhat stated that nearly 53% of respondents have experienced a
+from Red Hat stated that nearly 53% of respondents have experienced a
 misconfiguration incident in their Kubernetes environments in the last 12
 months.
 
@@ -22,14 +22,20 @@ Illustration](../../../assets/images/K01-2022.gif)
 
 Kubernetes manifests contain many different configurations that can affect the
 reliability, security, and scalability of a given workload. These configurations
-should be audited and remediated continuously. Some examples of high-impact
-manifest configurations are below:
+should be configured securely in-line with the recommendations of the 
+[Kubernetes Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/). 
+
+Some examples of high-impact manifest configurations are below:
 
 **Application processes should not run as root:** Running the process inside of
 a container as the `root` user is a common misconfiguration in many clusters.
 While `root` may be an absolute requirement for some workloads, it should be
-avoided when possible. If the container were to be compromised, the attacker
-would have root-level privileges that allow actions such as starting a malicious
+avoided when possible or, in Kubernetes 1.33 and above 
+[user namespaces](https://kubernetes.io/blog/2025/04/25/userns-enabled-by-default/) 
+can be used to provide root access inside the container while running as a 
+non-privileged user from the host's perspective.
+If the container were to be compromised, the attacker would have root-level 
+privileges that allow actions such as starting a malicious
 process that otherwise wouldn’t be permitted with other users on the system.
 
 ```yaml
@@ -70,9 +76,8 @@ spec:
 `privileged` within Kubernetes, the container can access additional resources
 and kernel capabilities of the host. Workloads running as root combined with
 privileged containers can be devastating as the user can get complete access to
-the host. This is, however, limited when running as a non-root user. Privileged
-containers are dangerous as they remove many of the built-in container isolation
-mechanisms entirely.
+the host. Privileged containers are dangerous as they remove many of the built-in
+container isolation mechanisms entirely.
 
 ```yaml
 apiVersion: v1  
@@ -117,23 +122,25 @@ spec:
 
 ## How to Prevent
 
-Maintaining secure configurations throughout a large, distributed Kubernetes
-environment can be a difficult task. While many security configurations are
-often set in the `securityContext` of the manifest itself there are a number of
-other misconfigurations that can be detected elsewhere. In order to prevent
-misconfigurations, they must first be detected in both runtime and in code. We
-can enforce that applications:
+Preventing users from running workloads with excessive privileges can be achieved 
+by using admission control services which will enforce policies on workloads 
+in the cluster. There are a range of available options to achieve this, both built-in
+to the Kubernetes project and also via third party applications.
 
-1. Run as non-root user
-2. Run as non-privileged mode
-3. Set AllowPrivilegeEscalation: False to disallow child process from
-getting more privileges than its parents.
-4. Set a LimitRange to constrain the resource allocations for each applicable
-object kind in a namespace.
+Within the Kubernetes project there are two available options. 
+[Pod Security Admission](https://kubernetes.io/docs/concepts/security/pod-security-admission/)
+is a relatively simple system that allows for one of three security levels to be defined for
+each namespace in the cluster. It is suitable for simple use cases but doesn't suit more complex
+requirements.
 
-Tools such as Open Policy Agent can be used as a policy engine to detect these
-common misconfigurations. The CIS Benchmark for Kubernetes can also be used as a
-starting point for discovering misconfigurations.
+[Validating Admission Policy](https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/)
+provides more fine grained controls on workloads in Kubernetes clusters. Policies written in 
+[Common Expression Language (CEL)](https://github.com/google/cel-spec) can be used to restrict
+workload configuration in the cluster.
+
+There are also external admission control options available which can be used to control the 
+security of workloads in the cluster. [Kyverno](https://kyverno.io/) and [OPA Gatekeeper](https://github.com/open-policy-agent/gatekeeper)
+are two popular projects in this field. Both provide flexible policy enforcement options.
 
 ![Insecure Workload Configuration -
 Mitigations](../../../assets/images/K01-2022-mitigation.gif)
@@ -146,9 +153,6 @@ TODO
 
 CIS Benchmarks for Kubernetes:
 [https://www.cisecurity.org/benchmark/kubernetes](https://www.cisecurity.org/benchmark/kubernetes)
-
-Open Policy Agent:
-[https://github.com/open-policy-agent/opa](https://github.com/open-policy-agent/opa)
 
 Pod Security Standards:
 [https://kubernetes.io/docs/concepts/security/pod-security-standards/](https://kubernetes.io/docs/concepts/security/pod-security-standards/)
