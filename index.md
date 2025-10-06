@@ -44,5 +44,5 @@ The Kubernetes OWASP Top 10 document is licensed under the CC BY-NC-SA 4.0, the 
 ## Project Leaders
 
 - [Rory McCune, Senior Security Researcher & Advocate at Datadog](https://www.mccune.org.uk)
-- Cailyn Edwards
+- [Cailyn Edwards, Senior Software Engineer, Cloud Security, @ Auth0 by Okta](https://www.cailyncodes.dev)
 - [Jimmy Mesta, Co-founder & CTO at KSOC](https://twitter.com/jimmesta)
