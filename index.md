@@ -12,6 +12,12 @@ pitch: Welcome to the OWASP Top Ten for Kubernetes
 
 When adopting [Kubernetes](https://kubernetes.io), we introduce new risks to our applications and infrastructure. The *OWASP Kubernetes Top 10* is aimed at helping security practitioners, system administrators, and software developers prioritize risks around the Kubernetes ecosystem. The Top Ten is a prioritized list of these risks. In the future we hope for this to be backed by data collected from organizations varying in maturity and complexity.
 
+## Top 10 Kubernetes Risks - 2025
+
+We're in the process of updating the Top 10 for 2025. To contribute please complete the Google Form below
+
+- [Top 10 2025 Survey](https://forms.gle/iUbTtvtmU7aCF6QZ6)
+
 ## Top 10 Kubernetes Risks - 2022
 
 - [K00: Welcome to the Kubernetes Security Top Ten](./2022/en/src/)
@@ -37,4 +43,6 @@ The Kubernetes OWASP Top 10 document is licensed under the CC BY-NC-SA 4.0, the 
 
 ## Project Leaders
 
+- [Rory McCune, Senior Security Researcher & Advocate at Datadog](https://www.mccune.org.uk)
+- Cailyn Edwards
 - [Jimmy Mesta, Co-founder & CTO at KSOC](https://twitter.com/jimmesta)
