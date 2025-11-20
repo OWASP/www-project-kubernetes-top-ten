@@ -14,9 +14,7 @@ When adopting [Kubernetes](https://kubernetes.io), we introduce new risks to our
 
 ## Top 10 Kubernetes Risks - 2025
 
-We're in the process of updating the Top 10 for 2025. To contribute please complete the Google Form below
-
-- [Top 10 2025 Survey](https://forms.gle/iUbTtvtmU7aCF6QZ6)
+We're in the process of updating the Top 10 for 2025, stay tunes for updates!
 
 ## Top 10 Kubernetes Risks - 2022
 
