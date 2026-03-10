@@ -6,7 +6,23 @@
 
 When adopting [Kubernetes](https://kubernetes.io), we introduce new risks to our applications and infrastructure. The *OWASP Kubernetes Top 10* is aimed at helping security practitioners, system administrators, and software developers prioritize risks around the Kubernetes ecosystem. The Top Ten is a prioritized list of these risks. In the future we hope for this to be backed by data collected from organizations varying in maturity and complexity.
 
-### ToC
+## Draft Top 10 Kubernetes Risks - 2025
+
+Draft 2025 Top 10 Risks now available Feedback welcome. Please open issues or PRs for changes
+
+- [K01: Insecure Workload Configurations](./2025/en/src/K01-Insecure-Workload-Configurations)
+- [K02: Overly Permissive Authorization Configurations](./2025/en/src/K02-Overly-Permissive-Authorization-Configurations.md)
+- [K03: Secrets Management Failures](./2025/en/src/K03-Secrets-Management-Failures.md)
+- [K04: Lack Of Cluster Level Policy Enforcement](./2025/en/src/K04-Lack-Of-Cluster-Level-Policy-Enforcement.md)
+- [K05: Missing Network Segmentation Controls](./2025/en/src/K05-Missing-Network-Segmentation-Controls.md)
+- [K06: Overly Exposed Kubernetes Components](./2025/en/src/K06-Overly-Exposed-Kubernetes-Components.md)
+- [K07: Misconfigured And Vulnerable Cluster Components](./2025/en/src/K07-Misconfigured-And-Vulnerable-Cluster-Components.md)
+- [K08: Cluster To Cloud Lateral Movement](./2025/en/src/K08-Cluster-To-Cloud-Lateral-Movement.md)
+- [K09: Broken Authentication Mechanisms](./2025/en/src/K09-Broken-Authentication-Mechanisms.md)
+- [K10: Inadequate Logging And Monitoring](./2025/en/src/K10-Inadequate-Logging-And-Monitoring.md)
+
+
+### Top 10 Kubernetes Risks - 2022
 
 * K00:2022 [Welcome to the Kubernetes Security Top Ten](2022/en/src/K00-introduction.md)
 * K01:2022 [Insecure Workload Configurations](2022/en/src/K01-insecure-workload-configurations.md)
