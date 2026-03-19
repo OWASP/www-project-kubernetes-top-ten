@@ -6,9 +6,9 @@
 
 When adopting [Kubernetes](https://kubernetes.io), we introduce new risks to our applications and infrastructure. The *OWASP Kubernetes Top 10* is aimed at helping security practitioners, system administrators, and software developers prioritize risks around the Kubernetes ecosystem. The Top Ten is a prioritized list of these risks. In the future we hope for this to be backed by data collected from organizations varying in maturity and complexity.
 
-## Draft Top 10 Kubernetes Risks - 2025
+## Top 10 Kubernetes Risks - 2025
 
-Draft 2025 Top 10 Risks now available Feedback welcome. Please open issues or PRs for changes
+2025 Top 10 Risks now available Feedback welcome. Please open issues or PRs for changes
 
 - [K01: Insecure Workload Configurations](./2025/en/src/K01-Insecure-Workload-Configurations)
 - [K02: Overly Permissive Authorization Configurations](./2025/en/src/K02-Overly-Permissive-Authorization-Configurations.md)
