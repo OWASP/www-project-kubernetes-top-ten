@@ -16,7 +16,7 @@ When adopting [Kubernetes](https://kubernetes.io), we introduce new risks to our
 
 2025 Top 10 Risks now available Feedback welcome. Please open issues or PRs for changes
 
-- [K01: Insecure Workload Configurations](./2025/en/src/K01-Insecure-Workload-Configurations)
+- [K01: Insecure Workload Configurations](./2025/en/src/K01-Insecure-Workload-Configurations.md)
 - [K02: Overly Permissive Authorization Configurations](./2025/en/src/K02-Overly-Permissive-Authorization-Configurations.md)
 - [K03: Secrets Management Failures](./2025/en/src/K03-Secrets-Management-Failures.md)
 - [K04: Lack Of Cluster Level Policy Enforcement](./2025/en/src/K04-Lack-Of-Cluster-Level-Policy-Enforcement.md)

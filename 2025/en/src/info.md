@@ -5,7 +5,7 @@
 
 ### Top 10 Kubernetes Risks
 
-- [K01: Insecure Workload Configuration](./K01-Insecure-Workload-Configurations)
+- [K01: Insecure Workload Configuration](./K01-Insecure-Workload-Configurations.md)
 - [K02: Overly Permissive Authorization Configurations](./K02-Overly-Permissive-Authorization-Configurations.md)
 - [K03: Secrets Management Failures](./K03-Secrets-Management-Failures.md)
 - [K04: Lack Of Cluster Level Policy Enforcement](./K04-Lack-Of-Cluster-Level-Policy-Enforcement.md)
