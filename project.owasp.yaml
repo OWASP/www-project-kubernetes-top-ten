@@ -1,0 +1,24 @@
+audience:
+  - builder
+  - defender
+community:
+  - name: project-k8s-top10
+    platform: slack
+    url: https://owasp.slack.com/archives/C03FV6MSRCM
+leaders:
+  - name: Jimmy Mesta
+    email: jimmy@ksoc.com
+    github: jmbmxer
+level: 2
+name: OWASP Kubernetes Top Ten
+pitch: Welcome to the OWASP Top Ten for Kubernetes
+repositories:
+  - name: www-project-kubernetes-top-ten
+    url: https://github.com/OWASP/www-project-kubernetes-top-ten
+    description: OWASP Foundation Web Repository
+tags:
+  - kubernetes
+  - custom-tag-1
+  - custom-tag-2
+type: documentation
+website: https://owasp.org/www-project-kubernetes-top-ten
