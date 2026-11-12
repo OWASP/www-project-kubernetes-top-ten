@@ -26,6 +26,12 @@ Access to all Kubernetes APIs should be restricted to trusted hosts and networks
 
 For worker nodes, the Kubelet port should not be exposed to the Internet, access should only be allowed from the API server and any other specific hosts that require access.
 
+Network restrictions should be backed by authentication on the components themselves, as a stolen credential or a misconfigured firewall rule will otherwise give full access:
+
+- **Kubelet**. The kubelet's own command line defaults allow anonymous requests (`--anonymous-auth=true`) and authorize every request (`--authorization-mode=AlwaysAllow`). Most installers override these, but check that `authentication.anonymous.enabled` is `false` and `authorization.mode` is `Webhook` in the kubelet configuration, and that the unauthenticated read-only port (10255) is disabled with `readOnlyPort: 0`. See [Kubelet authentication/authorization](https://kubernetes.io/docs/reference/access-authn-authz/kubelet-authn-authz/).
+- **API server anonymous access**. Anonymous requests are enabled by default so that health and discovery endpoints like `/version` work without credentials. An `AuthenticationConfiguration` (stable since Kubernetes 1.34) can limit anonymous access to specific paths, such as `/livez`, `/readyz` and `/healthz`. See [Anonymous authenticator configuration](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#anonymous-authenticator-configuration).
+- **etcd**. etcd should only be reachable from the API servers, and should require TLS client certificates so that only the API server can read and write cluster data, including Secrets. See [Limiting access of etcd clusters](https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#limiting-access-of-etcd-clusters).
+
 ## References
 
 - [Kubernetes Census](https://raesene.github.io/blog/2024/02/17/a-final-kubernetes-censys/)  
