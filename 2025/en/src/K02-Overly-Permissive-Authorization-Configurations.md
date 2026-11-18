@@ -49,5 +49,5 @@ For a more resilient security posture and to reduce clusters attack surface, org
 ## References
 
 - [Role Based Access Control Good Practices](https://kubernetes.io/docs/concepts/security/rbac-good-practices/)  
-
+- [CIS Benchmark for Kubernetes](https://www.cisecurity.org/benchmark/kubernetes) - Section 5.1
 - [Kubernetes Pentesting: RBAC, Secrets, PrivEsc and Kubectl](https://en.hackita.it/articoli/kubernetes-privilege-escalation/) - A practical assessment walkthrough covering ServiceAccount tokens, RBAC enumeration, secrets exposure, dangerous permissions such as `pods/exec` and `nodes/proxy`, workload abuse, and privilege-escalation paths.
