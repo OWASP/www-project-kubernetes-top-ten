@@ -12,7 +12,7 @@ It is important to leverage Kubernetes' built-in policy mechanisms and, where ne
 
 ## Description
 
-Without a centralized policy enforcement strategy, organizations and individuals often rely on manual reviews, CI/D pipelines, or custom review scripts. These approaches are difficult to scale, prone to human error, and often cannot prevent a user with direct cluster access from creating non-compliant resources. This can lead to several security risks:
+Without a centralized policy enforcement strategy, organizations and individuals often rely on manual reviews, CI/CD pipelines, or custom review scripts. These approaches are difficult to scale, prone to human error, and often cannot prevent a user with direct cluster access from creating non-compliant resources. This can lead to several security risks:
 
 - **Inconsistent Security Posture**: Different teams may configure their workloads with varying levels of security, leading to exploitable weak points in the cluster.  
 - **Insecure Configurations**: Users with sufficient permissions might inadvertently create resources that violate security best practices, such as running privileged pods, exposing services publicly, or using container images from untrusted registries.  
